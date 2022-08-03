@@ -17,7 +17,7 @@ class SuperAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if( Auth::check() && Auth::user()['role']['name'] == 'Superadmin'){
+        if( Auth::check() && Auth::user()['role']['name'] == 'SuperAdmin'){
             return $next($request); 
         }else{
             return back();

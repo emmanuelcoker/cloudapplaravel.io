@@ -10,17 +10,13 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Models\ContactPerson;
 use App\Models\GlobalSetting;
-use App\Models\Industry;
 use App\Models\Location;
-use App\Models\Path;
-use App\Models\Plan;
-use App\Models\Role;
 use App\Models\Tv;
 use App\Models\Zone;
-use Illuminate\Http\Request;
 use App\CustomClasses\Location as CustomClassesLocation;
 use App\Models\Announce;
 use App\Models\Banner;
+use App\Models\Country;
 use App\Models\Logo;
 use App\Models\Media;
 use App\Models\Training;
@@ -98,7 +94,12 @@ class RegisterController extends Controller
         $setting->company_ID = $ID_D;
         $setting->company_name = $request->company_name;
         $setting->company_address = $request->company_address;
+
+        //get country is_object
+        $country = Country::find($request->company_country);
+
         $setting->company_country = $request->company_country;
+        $setting->country = $country->iso2;
         $setting->industry_id = $request->company_industry;
 
         if ($request->hasFile('contact_person_image')) {
@@ -173,7 +174,8 @@ class RegisterController extends Controller
                     'title' => 'title0' . $i,
                     'description' => 'description0' . $i,
                     'type' => 'video',
-                    // 'position' => $file_position,
+                    'position' => $i,
+                    'content_type' => 'master',
                     'extension' => 'mp4'
                 ]
             );
@@ -184,7 +186,8 @@ class RegisterController extends Controller
                 'tv_id' => $tvNewID->id,
                 'file' => '0' . $i,
                 'type' => 'image',
-                'extension' => 'png'
+                'extension' => 'png',
+                'position' => $i,
             ]);
         }
 
@@ -204,7 +207,8 @@ class RegisterController extends Controller
             Logo::create([
                 'tv_id' => $tvNewID->id,
                 'image' => '0' . $i,
-                'extension' => 'png'
+                'extension' => 'png',
+                'position' => $i,
             ]);
         }
 
@@ -225,7 +229,7 @@ class RegisterController extends Controller
             'clientID' => self::generateClientID(),
             'country_id' => $request->company_country,
             'password' => Hash::make($request->password),
-            'role_id' => 1
+            'role_id' => 2
         ]);
     }
 

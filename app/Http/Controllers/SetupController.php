@@ -32,11 +32,11 @@ class SetupController extends Controller
             $data['paths'] = Path::all();
             $data['plans'] = Plan::all();
             $data['zones'] = Zone::all();
-            $data['roles'] = Role::all();
+            $data['roles'] = Role::where('name', '!=', 'SuperAdmin')->get();
             $data['industries'] = Industry::all();
             return view('setup.index', $data);
         } else {
-            return abort(404);
+            return redirect(route('login'));
         }
     }
 
@@ -46,7 +46,7 @@ class SetupController extends Controller
         session(['company' => $request->name, 'country' => $request->location]);
         $global_settings = GlobalSetting::first();
         if (!$global_settings) {
-            GlobalSetting::create(['company_name' => $request->name, 'country' => $request->location]);
+            GlobalSetting::create(['company_name' => $request->name]);
         }
         $demoLocation = Location::first();
         if (!$demoLocation) {

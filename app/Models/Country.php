@@ -9,7 +9,7 @@ class Country extends Model
 {
     use HasFactory;
     protected $fillable = [
-       'id', 'sortname','name'
+       'id', 'iso2','name'
     ];
 
     public function states(){

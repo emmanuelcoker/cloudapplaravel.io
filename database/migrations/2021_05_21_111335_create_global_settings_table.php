@@ -16,6 +16,7 @@ class CreateGlobalSettingsTable extends Migration
         Schema::create('global_settings', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('company_country')->nullable();
+            $table->string('company')->nullable();
             $table->string('company_ID')->nullable();
             $table->string('time_zone')->default(0);
             $table->string('company_name')->nullable();
@@ -33,7 +34,6 @@ class CreateGlobalSettingsTable extends Migration
             $table->string('rate_source')->default('db');
             $table->string('time_type')->nullable();
             $table->boolean('show_announcement')->default(true);
-            
             $table->boolean('show_logo')->default(true);
             $table->boolean('show_template')->default(true);
             $table->boolean('show_clock')->default(true);
