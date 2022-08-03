@@ -16,7 +16,9 @@ class CreateTrainingVideosTable extends Migration
         Schema::create('training_videos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('tv_id')->nullable();
-            $table->string('position')->nullable();
+            $table->string('m_position')->nullable();
+            $table->string('a_position')->nullable();
+            $table->string('e_position')->nullable();
             $table->string('title')->nullable();
             $table->string('video')->nullable();
             $table->boolean('morning')->default(true);
@@ -25,7 +27,7 @@ class CreateTrainingVideosTable extends Migration
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
-    }
+    } 
 
     /**
      * Reverse the migrations.

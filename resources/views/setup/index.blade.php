@@ -215,7 +215,7 @@
                                                 @endforeach
                                             </div>
                                         </section>
-                                    </div>
+                                    </div> 
                                 </div>
                                 <div id="general-info" class="general-info" style="margin-top:20px">
                                     <div class="info">
@@ -235,7 +235,6 @@
                                                                     @endforeach
                                                                 </select>
                                                             </div>
-
                                                         </div>
                                                     </div>
                                                 </div>
@@ -542,7 +541,7 @@
                                                                         <select class="form-control mb-4" name="user2_role" id="exampleFormControlSelect1">
                                                                             <option value="">Choose User Role</option>
                                                                             @foreach($roles as $role)
-                                                                            @if(!$role->name == 'Superadmin')
+                                                                            @if(!$role->name !== 'Superadmin')
                                                                             <option value="{{$role->id}}">{{$role->name}}</option>
                                                                             @endif
                                                                             @endforeach

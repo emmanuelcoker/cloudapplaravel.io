@@ -9,7 +9,7 @@ class GlobalSetting extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'country', 'time_zone', 'company_name', 'company_logo', 'plan_id', 'expiry_date',  'industry_id',  'show_announcement', 'time_type', 'menuBackground',  'dashboardLogo', 'path_id', 'company_address', 'company_country'
+        'time_zone', 'company_name', 'company_logo', 'plan_id', 'expiry_date',  'industry_id',  'show_announcement', 'time_type', 'menuBackground',  'dashboardLogo', 'path_id', 'company_address', 'company_country', 'company_ID'
     ];
 
      //get user country

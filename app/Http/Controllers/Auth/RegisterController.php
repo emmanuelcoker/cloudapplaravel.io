@@ -24,6 +24,7 @@ use App\Models\Banner;
 use App\Models\Logo;
 use App\Models\Media;
 use App\Models\Training;
+use App\Models\TrainingVideo;
 
 class RegisterController extends Controller
 {
@@ -76,28 +77,10 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
+    protected function create()
     {
-
-        //generate customerID
-        $customerID = 'ID'.rand(200000, 9999);
-        $user_id = User::where('clientID', $customerID)->first();
-        if($user_id){
-            $customerID2 = 'ID'.rand(500000, 9999);
-            $user_id2 = User::where('clientID', $customerID2)->first();
-            if($user_id2){
-                $ID = 'ID'.rand(800000, 9999);
-            }else{
-                $ID = $customerID2;
-            }
-        }else{
-            $ID = $customerID;
-        }
-
-
         $request = request();
 
-        
         $setting = GlobalSetting::first();
         $setting->plan_id = $request->plan_id;
         $setting->path_id = $request->path_id;
@@ -105,18 +88,17 @@ class RegisterController extends Controller
         //company IMAGE
         if ($request->hasFile('logo')) {
             $image_file = $request->file('logo');
-            // $ext = strtolower($image_file->getClientOriginalExtension());
             $file = 'logo' . '.png';
             $image_file->move('images', $file);
             $setting->company_logo = $file;
         }
 
 
-       $ID_D = strtoupper(substr($request->company_name, 0, 3));
+        $ID_D = strtoupper(substr($request->company_name, 0, 3));
         $setting->company_ID = $ID_D;
         $setting->company_name = $request->company_name;
         $setting->company_address = $request->company_address;
-        $setting->company_country= $request->company_country;
+        $setting->company_country = $request->company_country;
         $setting->industry_id = $request->company_industry;
 
         if ($request->hasFile('contact_person_image')) {
@@ -134,20 +116,22 @@ class RegisterController extends Controller
 
 
         //users
-        if($request->user1_name && $request->user1_email && $request->user1_password && $request->user1_role){
+        if ($request->user1_name && $request->user1_email && $request->user1_password && $request->user1_role) {
             User::create([
                 'name' => $request->user1_name,
                 'email' => $request->user1_email,
+                'clientID' => self::generateClientID(),
                 'country_id' => $request->company_country,
                 'password' => Hash::make($request->user1_password),
                 'role_id' => $request->user1_role
             ]);
         }
-      
-        if($request->user2_name && $request->user2_email && $request->user2_password && $request->user2_role){
+
+        if ($request->user2_name && $request->user2_email && $request->user2_password && $request->user2_role) {
             User::create([
                 'name' => $request->user2_name,
                 'email' => $request->user2_email,
+                'clientID' => self::generateClientID(),
                 'country_id' => $request->company_country,
                 'password' => Hash::make($request->user2_password),
                 'role_id' => $request->user2_role
@@ -172,40 +156,54 @@ class RegisterController extends Controller
         CustomClassesLocation::createNewDisplay($ID_D, $name);
 
         //morning
-        Training::create([ 'tv_id' => $tvNewID->id, 'name' => 'Morning']);
-        
+        Training::create(['tv_id' => $tvNewID->id, 'name' => 'Morning']);
+
         //afternoon
-        Training::create([ 'tv_id' => $tvNewID->id, 'name' => 'afternoon']);
-        
+        Training::create(['tv_id' => $tvNewID->id, 'name' => 'afternoon']);
+
         //Evening
-        Training::create([ 'tv_id' => $tvNewID->id, 'name' => 'Evening']);
+        Training::create(['tv_id' => $tvNewID->id, 'name' => 'Evening']);
 
         //create default media contents
-        for ($i=1; $i < 6; $i++) { 
-            Media::create([
-                'tv_id' => $tvNewID->id,
-                'file' => '0'.$i,
-                'title' => 'title0'.$i,
-                'description' => 'description0'.$i,
-                'type' => 'video',
-                // 'position' => $file_position,
-                'extension' => 'mp4'
-            ]);
+        for ($i = 1; $i < 6; $i++) {
+            Media::create(
+                [
+                    'tv_id' => $tvNewID->id,
+                    'file' => '0' . $i,
+                    'title' => 'title0' . $i,
+                    'description' => 'description0' . $i,
+                    'type' => 'video',
+                    // 'position' => $file_position,
+                    'extension' => 'mp4'
+                ]
+            );
         }
-        
-        for ($i=1; $i < 4; $i++) { 
+
+        for ($i = 1; $i < 6; $i++) {
             Banner::create([
                 'tv_id' => $tvNewID->id,
-                'file' => '0'.$i,
+                'file' => '0' . $i,
                 'type' => 'image',
                 'extension' => 'png'
             ]);
         }
-        
-        for ($i=1; $i < 6; $i++) { 
+
+        for ($i = 1; $i < 6; $i++) {
+            $file_Index = '0' . $i;
+            TrainingVideo::create([
+                'tv_id' => $tvNewID->id,
+                'title' => 'Training ' . $file_Index,
+                'video' => $file_Index,
+                'm_position' => $i,
+                'a_position' => $i,
+                'e_position' => $i,
+            ]);
+        }
+
+        for ($i = 1; $i < 6; $i++) {
             Logo::create([
                 'tv_id' => $tvNewID->id,
-                'image' => '0'.$i,
+                'image' => '0' . $i,
                 'extension' => 'png'
             ]);
         }
@@ -224,10 +222,31 @@ class RegisterController extends Controller
         return User::create([
             'name' => $request->admin_name,
             'email' => $request->email,
+            'clientID' => self::generateClientID(),
             'country_id' => $request->company_country,
             'password' => Hash::make($request->password),
             'role_id' => 1
         ]);
+    }
 
+
+
+    private static function generateClientID()
+    {
+        //generate customerID
+        $customerID = 'ID' . rand(200000, 9999);
+        $user_id = User::where('clientID', $customerID)->first();
+        if ($user_id) {
+            $customerID2 = 'ID' . rand(500000, 9999);
+            $user_id2 = User::where('clientID', $customerID2)->first();
+            if ($user_id2) {
+                $ID = 'ID' . rand(800000, 9999);
+            } else {
+                $ID = $customerID2;
+            }
+        } else {
+            $ID = $customerID;
+        }
+        return $ID;
     }
 }

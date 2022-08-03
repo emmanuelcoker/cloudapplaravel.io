@@ -7,6 +7,7 @@ use App\Models\Industry;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Zone;
+use App\Models\Path;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -41,7 +42,10 @@ class DatabaseSeeder extends Seeder
         //add first country
         Country::firstOrCreate(['id' => 160, 'sortname' => 'NG', 'name' => 'Nigeria']);
 
+        //register path configuration
+        Path::firstOrCreate(['path' => 'Lcoation/App/index.html']);
+
         //create admin
-        User::firstOrCreate(['name' => 'Administrator', 'country_id' => 160, 'email' => 'admin@gmail.com', 'role_id' => 2, 'password' => '$2y$10$/bcJvAPtPPVNPZTz6noOKuYdEgWgwdjY4.DS7nB0c8q53zXt7ZppS']);
+        // User::firstOrCreate(['name' => 'Administrator', 'country_id' => 160, 'email' => 'admin@gmail.com', 'role_id' => 2, 'password' => '$2y$10$/bcJvAPtPPVNPZTz6noOKuYdEgWgwdjY4.DS7nB0c8q53zXt7ZppS']);
     }
 }

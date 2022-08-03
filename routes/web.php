@@ -29,7 +29,7 @@ Route::get('/test', function () {
 */
 
 Route::get('/', function () {
-    $setting = GlobalSetting::first()['is_registered'];
+    $setting = GlobalSetting::first()['is_registered'] ?? null;
     if ($setting) {
         return redirect(route('login'));
     } else {
@@ -50,7 +50,6 @@ Auth::routes();
 //set up a new company on registration
 Route::post('/move_to_setup', [App\Http\Controllers\SetupController::class, 'move_to_setup'])->name('move_to_setup');
 Route::get('/app-setup', [App\Http\Controllers\SetupController::class, 'index'])->name('appSetup');
-Route::post('/red', [App\Http\Controllers\SetupController::class, 'index2'])->name('registers');
  
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

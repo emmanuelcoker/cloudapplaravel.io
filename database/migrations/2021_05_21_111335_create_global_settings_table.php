@@ -15,11 +15,15 @@ class CreateGlobalSettingsTable extends Migration
     {
         Schema::create('global_settings', function (Blueprint $table) {
             $table->id();
-            $table->string('country')->nullable();
+            $table->unsignedBigInteger('company_country')->nullable();
+            $table->string('company_ID')->nullable();
             $table->string('time_zone')->default(0);
             $table->string('company_name')->nullable();
             $table->string('company_logo')->nullable();
-            $table->string('plan_id')->nullable();
+            $table->string('company_address')->nullable();
+            $table->unsignedBigInteger('plan_id')->nullable();
+            $table->unsignedBigInteger('path_id')->nullable();
+            $table->unsignedBigInteger('industry_id')->nullable();
             $table->date('expiry_date')->nullable();
             $table->string('dashboardLogo')->nullable();
             $table->string('menuBackground')->nullable();
@@ -27,7 +31,6 @@ class CreateGlobalSettingsTable extends Migration
             $table->string('allowed_banner')->nullable();
             $table->string('allowed_logo')->nullable();
             $table->string('rate_source')->default('db');
-            $table->string('industry_id')->nullable();
             $table->string('time_type')->nullable();
             $table->boolean('show_announcement')->default(true);
             
@@ -43,6 +46,7 @@ class CreateGlobalSettingsTable extends Migration
             $table->boolean('to_csv')->default(false);
             $table->boolean('add_display')->default(false);
             $table->boolean('add_location')->default(false);
+            $table->boolean('is_registered')->default(false);
             $table->timestamps();
     
         });

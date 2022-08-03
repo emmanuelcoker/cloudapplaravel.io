@@ -24,8 +24,8 @@ class CreateLocationsTable extends Migration
             $table->string('manager')->nullable();
             $table->string('manager_phone')->nullable();
             $table->string('manager_email')->nullable();
-            $table->unsignedBigInteger('state_id');
-            $table->unsignedBigInteger('city_id');
+            $table->unsignedBigInteger('state_id')->nullable();
+            $table->unsignedBigInteger('city_id')->nullable();
             $table->timestamps();
         });
     }

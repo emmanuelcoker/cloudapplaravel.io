@@ -9,7 +9,7 @@ class TrainingVideo extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'tv_id', 'position', 'title', 'video',  'morning', 'afternoon', 'evening'
+        'tv_id', 'm_position', 'a_position', 'e_position', 'title', 'video',  'morning', 'afternoon', 'evening'
     ];
 
     // public function training(){

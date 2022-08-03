@@ -17,7 +17,7 @@ class CreateNewsTable extends Migration
             $table->id();
 
             $table->unsignedBigInteger('tv_id')->nullable();
-            $table->string('name')->n;
+            $table->string('name');
             $table->longText('content')->nullable();
             $table->string('image');
             $table->string('position')->nullable();
