@@ -8,6 +8,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\Zone;
 use App\Models\Path;
+use App\Models\Tab;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -44,6 +45,20 @@ class DatabaseSeeder extends Seeder
 
         //register path configuration
         Path::firstOrCreate(['path' => 'Lcoation/App/index.html']);
+
+        Tab::firstOrCreate(
+            [
+                'tab1' => 'FX Rate',
+                'tab2' => 'PTA Rate',
+                'tab3' => 'Interest Rate',
+                'tab4' => 'Tab Name 1',
+                'tab5' => 'Tab Name 2',
+                'tab6' => 'Tab Name 3',
+                'news_title' => 'Today\'s News',
+                'announcement' => 'Announcement',
+                'training' => 'Scheduled Communication'
+            ]
+        );
 
         //create admin
         // User::firstOrCreate(['name' => 'Administrator', 'country_id' => 160, 'email' => 'admin@gmail.com', 'role_id' => 2, 'password' => '$2y$10$/bcJvAPtPPVNPZTz6noOKuYdEgWgwdjY4.DS7nB0c8q53zXt7ZppS']);
