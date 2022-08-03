@@ -14,8 +14,8 @@ class ExportSQLSeeder extends Seeder
      */
     public function run()
     {
-        DB::unprepared(file_get_contents('public/sql_tables/Country.sql'));
-        DB::unprepared(file_get_contents('public/sql_tables/States.sql'));
-        DB::unprepared(file_get_contents('public/sql_tables/Cities.sql'));
+        DB::unprepared(file_get_contents('sql_tables/Country.sql'));
+        DB::unprepared(file_get_contents('sql_tables/States.sql'));
+        DB::unprepared(file_get_contents('sql_tables/Cities.sql'));
     }
 }

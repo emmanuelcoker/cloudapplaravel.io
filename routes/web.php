@@ -29,10 +29,15 @@ Route::get('/test', function () {
 */
 
 Route::get('/', function () {
-    $setting = GlobalSetting::first()['is_registered'] ?? null;
+    try {
+        $setting = GlobalSetting::first()['is_registered'];
+    } catch (\Throwable $th) {
+        $setting = null;
+    }
     if ($setting) {
         return redirect(route('login'));
     } else {
+        Artisan::call('db:seed');
         return redirect(route('register'));
     }
 });
@@ -42,6 +47,8 @@ Route::get('/clearCache', function () {
     Artisan::call('optimize:clear');
     return 'ok';
 });
+
+
 
 
 Auth::routes();
