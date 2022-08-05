@@ -16,7 +16,7 @@ class CreateGlobalSettingsTable extends Migration
         Schema::create('global_settings', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('company_country')->nullable();
-            $table->string('company')->nullable();
+            $table->string('country')->nullable();
             $table->string('company_ID')->nullable();
             $table->string('time_zone')->default(0);
             $table->string('company_name')->nullable();
