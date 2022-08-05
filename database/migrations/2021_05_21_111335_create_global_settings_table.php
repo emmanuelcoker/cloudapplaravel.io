@@ -48,7 +48,6 @@ class CreateGlobalSettingsTable extends Migration
             $table->boolean('add_location')->default(false);
             $table->boolean('is_registered')->default(false);
             $table->timestamps();
-    
         });
     }
 
