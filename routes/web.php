@@ -48,9 +48,6 @@ Route::get('/clearCache', function () {
     return 'ok';
 });
 
-
-
-
 Auth::routes();
 
 
