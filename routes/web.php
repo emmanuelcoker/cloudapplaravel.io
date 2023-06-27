@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/test', function () {
     try {
-       return Rss::output_rss_feed('https://www.aljazeera.com/xml/rss/all.xml', 10);
+        return Rss::output_rss_feed('https://www.aljazeera.com/xml/rss/all.xml', 10);
     } catch (\Throwable $th) {
         throw $th;
     }
@@ -102,8 +102,6 @@ Route::group(['middleware' => ['auth', 'superadmin'], 'prefix' => 'Super-Admin']
     //permissions
     Route::get('/permission', [App\Http\Controllers\HomeController::class, 'permission'])->name('permission');
     Route::post('/permission/store', [App\Http\Controllers\HomeController::class, 'permission_store'])->name('permission.store');
-   
-    
 });
 
 
@@ -192,8 +190,8 @@ Route::group(['middleware' => ['auth', 'client'], 'prefix' => 'client'], functio
 
     //activitys
     Route::get('/activities', [App\Http\Controllers\HomeController::class, 'activities'])->name('activities');
-    
-    
+
+
 
     //logo
     Route::get('/logo', [App\Http\Controllers\Client\LogoController::class, 'index'])->name('logo.index');
@@ -214,6 +212,4 @@ Route::group(['middleware' => ['auth', 'client'], 'prefix' => 'client'], functio
 
     // dark mode
     Route::post('/darkmode', [App\Http\Controllers\HomeController::class, 'darkmode'])->name('darkmode');
-
-
 });

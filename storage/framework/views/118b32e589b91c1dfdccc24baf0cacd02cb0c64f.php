@@ -80,8 +80,8 @@
                             <span style="display: none;"><?php echo e($x++); ?> <?php echo e($i++); ?></span>
                             <select wire:model="currency.<?php echo e($x); ?>" class="form-control mb-4" required style="background:var(--inputBackground); color:var(--inputColor); border:2px solid var(--imgBorder)">
                                 <option value="<?php echo e($rate->currency); ?>"><?php echo e($rate->currency); ?></option>
-                                <?php $__currentLoopData = $countries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $country): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <option value="<?php echo e($country->currency); ?>"><?php echo e($country->currency); ?></option>
+                                <?php $__currentLoopData = $flags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $flag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option value="<?php echo e($flag->name); ?>"><?php echo e($flag->name); ?></option>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                             <input type="hidden" wire:model="key.<?php echo e($i); ?>" class="form-control mb-4" required style="background:var(--inputBackground); color:var(--inputColor); border:2px solid var(--imgBorder)">
@@ -148,8 +148,8 @@
                                 <div class="form-group">
                                     <select wire:model="c" class="form-control mb-4" required style="background-color:var(--inputBackground) !important; color:var(--inputColor); border:2px solid var(--imgBorder)">
                                         <option value="">Select Currency</option>
-                                        <?php $__currentLoopData = $countries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $country): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <option value="<?php echo e($country->currency); ?>"><?php echo e($country->currency); ?></option>
+                                        <?php $__currentLoopData = $flags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $flag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($flag->name); ?>"><?php echo e($flag->name); ?></option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>

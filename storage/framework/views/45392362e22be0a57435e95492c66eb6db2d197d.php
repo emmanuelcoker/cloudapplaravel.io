@@ -85,7 +85,7 @@ unset($__errorArgs, $__bag); ?>
             </div>
 
             <div class="field-wrapper">
-                <a href="javascript:void(0);" class="forgot-pass-link">Forgot Password?</a>
+                <a href="<?php echo e(route('password.request')); ?>" class="forgot-pass-link">Forgot Password?</a>
             </div>
 
         </div>

@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Models\GlobalSetting;
 use App\Models\Tv;
 use Illuminate\Http\Request;
+use App\Models\Announce;
 
 class IndexController extends Controller
 {
@@ -18,7 +19,6 @@ class IndexController extends Controller
 
     public function template_sample()
     {
-
         if (Permission::check('update_box_url')) {
             //global settings
             $data['settings'] = GlobalSetting::first();
@@ -42,6 +42,7 @@ class IndexController extends Controller
 
     public function publish_to_zip()
     {
+        return 'here';
         if (Permission::check('update_box_url')) {
             //global settings
             $data['settings'] = GlobalSetting::first();
@@ -85,10 +86,12 @@ class IndexController extends Controller
 
     public function publishToApi(Request $request)
     {
+        return 'here';
         //global settings
         $data['settings'] = GlobalSetting::first();
         if ($data['settings']['to_csv']) {
             $update = $request->update;
+
             Publish::toStatic();
             Publish::apiCSV($update);
             Activity::logChanges('Published to Api', 'Publishing', 'published'); //log activities

@@ -12,7 +12,8 @@ class Variables{
 
     //used for getting path for  uploading files
     public  static function uploadPath($file){
-        return GlobalSetting::first()['company_ID'].'/'.session()->get('tv')['name'].'/App/'.$file;
+        $path = GlobalSetting::first()['company_ID'].'/'.session()->get('tv')['name'].'/App/'.$file;
+        return Path::serverFullAsset($path);
     }
 
 
@@ -51,7 +52,7 @@ class Variables{
 
     //path to update directory
     public  static function updatePath($file){
-        return GlobalSetting::first()['company_ID'].'/'.session()->get('tv')['name'].'/Update/'.$file;
+        return GlobalSetting::first()['company_ID'].'/'.session()->get('tv')['name'].'/Api/'.$file;
     }
     
 }

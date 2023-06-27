@@ -17,7 +17,7 @@ class Client
      */
     public function handle(Request $request, Closure $next)
     {
-        if( Auth::check() && Auth::user()['role']['name'] == 'Client' || Auth::user()['role']['name'] == 'SuperAdmin'){
+        if( Auth::check() && Auth::user()['role']['name'] == 'Admin' || Auth::user()['role']['name'] == 'SuperAdmin'){
             return $next($request); 
         }else{
             return back();

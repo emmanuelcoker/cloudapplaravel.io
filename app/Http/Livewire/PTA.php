@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use App\CustomClasses\Activity;
 use App\CustomClasses\Permission;
 use App\CustomClasses\StoreRateToArray;
-use App\Models\Country;
+use App\Models\Flag;
 use App\Models\PtaRate;
 use App\Models\Tab;
 use Livewire\Component;
@@ -32,7 +32,7 @@ class PTA extends Component
         return view('livewire.p-t-a', [
             'ptas' => PtaRate::all(),
             'tabs' => Tab::first(),
-            'countries' => Country::all(),
+            'flags' => Flag::all(),
         ]);
     }
 

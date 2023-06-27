@@ -482,7 +482,7 @@
                 },
                 success: function(result) {
                     if (status) {
-                        var turn = "No";
+                        var turn = "On";
                     } else {
                         var turn = 'OFF';
                     }

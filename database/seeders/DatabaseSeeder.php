@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             SetupSeeder::class,
-            ExportSQLSeeder::class,
+            // ExportSQLSeeder::class,
         ]);
     }
 }

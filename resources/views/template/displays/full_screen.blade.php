@@ -7,6 +7,8 @@
     <!-- Insert to your webpage before the </head> -->
     <script src="sliderengine/jquery.js"></script>
     <script src="sliderengine/html5gallery.js"></script>
+    <meta http-equiv="pageid" content="<? echo rand(); ?>">
+
     <!-- End of head section HTML codes -->
     
     <style type="text/css">
@@ -40,8 +42,11 @@
 
 
 </head>
-<body style="background-color:{{$settings->tv_background}}">
 
+
+<body style="background-color:{{$settings->tv_background}}" changePageID="<? echo rand(); ?>">
+
+    
 <div id="loaderBody">
         <div class="loader">
             <img src="time/loader.gif" alt="" width="350">
@@ -74,8 +79,7 @@
     </div>
 
 
-
-
+        <a href="{{$app_url}}{{Variables::tvPath('index.html')}}?nocache=<?php echo rand(100, 998000); ?>"></a>
         <a href="{{$app_url}}{{Variables::tvPath('announce.html')}}"></a>
         <a href="{{$app_url}}{{Variables::tvPath('morning.html')}}"></a>
         <a href="{{$app_url}}{{Variables::tvPath('afternoon.html')}}"></a>

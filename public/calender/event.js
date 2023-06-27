@@ -1,6 +1,6 @@
 var calenderEvents;
 
-window.onload = $.getJSON("../calender/events.json", function (data) {
+window.onload = $.getJSON("../app_base/public/calender/events.json?id=" + Math.random(), function (data) {
     calenderEvents = data;
 })
 

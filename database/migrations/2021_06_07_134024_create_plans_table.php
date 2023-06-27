@@ -24,6 +24,7 @@ class CreatePlansTable extends Migration
             $table->string('schedule_video')->nullable();
             $table->string('locations')->nullable();
             $table->string('displays')->nullable();
+            $table->boolean('daily_scheduling')->default(true);
             $table->timestamps();
 
         });

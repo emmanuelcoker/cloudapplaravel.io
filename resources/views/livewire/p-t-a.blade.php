@@ -74,8 +74,8 @@
                         <span style="display: none;">{{$x++}} {{$i++}}</span>
                         <select wire:model="currency.{{$x}}" class="form-control mb-4" required style="background:var(--inputBackground); color:var(--inputColor); border:2px solid var(--imgBorder)">
                             <option value="{{$pta->currency}}">{{$pta->currency}}</option>
-                            @foreach($countries as $country)
-                            <option value="{{$country->currency}}">{{$country->currency}}</option>
+                            @foreach($flags as $flag)
+                            <option value="{{$flag->name}}">{{$flag->name}}</option>
                             @endforeach
                         </select>
                         <input type="hidden" wire:model="key.{{$i}}" class="form-control mb-4" required style="background:var(--inputBackground); color:var(--inputColor); border:2px solid var(--imgBorder)">
@@ -141,8 +141,8 @@
                                 <div class="form-group">
                                     <select wire:model="c" class="form-control mb-4" required style="background-color:var(--inputBackground) !important; color:var(--inputColor); border:2px solid var(--imgBorder)">
                                         <option value="">Select Currency</option>
-                                        @foreach($countries as $country)
-                                        <option value="{{$country->currency}}">{{$country->currency}}</option>
+                                        @foreach($flags as $flag)
+                                        <option value="{{$flag->name}}">{{$flag->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>

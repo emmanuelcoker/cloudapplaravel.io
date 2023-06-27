@@ -155,8 +155,9 @@ class LocationList extends Component
                 Announce::create([
                     'tv_id' => $tvNewID->id,
                     'text' => 'My announcement is what you need to know now, thanks.',
-                    'start' => date('Y-m--d H:i:s'),
-                    'end' => date('Y-m--d H:i:s'),
+                    'start' => date('Y-m-d H:i:s'),
+                    'end' => date('Y-m-d H:i:s'),
+                    'template' => 1
                 ]);
 
                 Activity::logChanges($name, 'Display', 'added');  //log activities
@@ -308,18 +309,29 @@ class LocationList extends Component
 
     public function delete($id)
     {
-        $location = Location::findOrFail($id);
-        Activity::logChanges($location->name, 'Location', 'deleted');  //log activities
-        $location->delete();
-
-        $this->alert('success', 'Location deleted successfully!', [
-            'position' =>  'center',
-            'timer' =>  4000,
-            'toast' =>  false,
-            'text' =>  '',
-            'showCancelButton' =>  false,
-            'showConfirmButton' =>  true,
-        ]);
+        if ($id != 1) {
+            $location = Location::findOrFail($id);
+            Activity::logChanges($location->name, 'Location', 'deleted');  //log activities
+            $location->delete();
+    
+            $this->alert('success', 'Location deleted successfully!', [
+                'position' =>  'center',
+                'timer' =>  4000,
+                'toast' =>  false,
+                'text' =>  '',
+                'showCancelButton' =>  false,
+                'showConfirmButton' =>  true,
+            ]);
+        } else {
+            $this->alert('error', 'Ooops! you cannot delete demo location', [
+                'position' =>  'center',
+                'timer' =>  4000,
+                'toast' =>  false,
+                'text' =>  '',
+                'showCancelButton' =>  false,
+                'showConfirmButton' =>  true,
+            ]);
+        }
     }
 
 

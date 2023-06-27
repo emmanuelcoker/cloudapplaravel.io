@@ -59,7 +59,7 @@
             </div>
 
             <div class="field-wrapper">
-                <a href="javascript:void(0);" class="forgot-pass-link">Forgot Password?</a>
+                <a href="{{ route('password.request') }}" class="forgot-pass-link">Forgot Password?</a>
             </div>
 
         </div>

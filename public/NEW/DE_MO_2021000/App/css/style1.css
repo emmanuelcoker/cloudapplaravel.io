@@ -1,0 +1,724 @@
+@font-face {
+
+  font-family: font1;
+
+  src: url('fonts/Overpass_Regular.ttf');
+
+}
+
+
+
+@font-face {
+
+  font-family: font2;
+
+  src: url('fonts/segoeuil.ttf');
+
+}
+
+/* #180bf0 */
+
+/* #11147f */
+
+
+
+html,
+
+body {
+
+  font-family: font2 !important;
+
+  color:white !important;
+
+  background: #180b50;
+
+}
+
+.padOff {
+
+  padding: 0px !important;
+
+}
+
+.padRightOff {
+
+  padding-right: 0px;
+
+}
+
+.padLeftOff {
+
+  padding-left: 0px;
+
+}
+
+.underVideo {
+
+  margin-top: 243px;
+
+}
+
+.myScroll {
+
+  background: white;
+
+  color: black;
+
+  padding: 15px 8px 4px 8px;
+
+  font-size: 20px;
+
+  margin-left: -15px;
+
+  display: block;
+
+}
+
+.slide1 img {
+
+  width: 100% !important;
+
+  margin-top: -9px !important;
+
+  height: 136px;
+
+}
+
+.slide1 {
+
+    margin-top: -10px;
+
+}
+
+.slide2 img {
+
+    width: 100%;
+
+    height: 128px;
+
+}
+
+.table-responsive {
+
+  margin-bottom: 0px !important;
+
+}
+
+.slick-prev, .slick-next, .slick-dots{
+
+  display: none !important;
+
+}
+
+.amazingslider-img-box-1 img {
+
+  min-height: 530px !important;
+
+  margin-top: 0px !important;
+
+}
+
+.amazingslider-space-1 {
+
+  min-height: 530px !important;
+
+  margin-top: 0px !important;
+
+}
+
+
+
+.myHeader1 {
+
+  padding: 16px 0px !important;
+
+  font-family: font1 !important;
+
+  font-size: 24px !important;
+
+  background: #11147f;
+
+  text-align: center;
+
+  margin-top: 0px !important;
+
+  z-index: 2000;
+
+  position: relative;
+
+}
+
+iframe{
+
+    border: none;
+
+    padding: 0;
+
+    margin: 0;
+
+    text-align: center;
+
+}
+
+.absolute {
+
+  position: absolute;
+
+}
+
+
+
+.fullWidth {
+
+  width: 100%;
+
+}
+
+
+
+.right {
+
+  text-align: right;
+
+}
+
+
+
+.left {
+
+  text-align: left;
+
+}
+
+.table-responsive {
+
+  border: none !important;
+
+}
+
+.table {
+
+  padding-bottom: 0px;
+
+  margin-bottom: 1px !important;
+
+  font-size: 20px !important;
+
+}
+
+table.firstTable {
+
+  margin-bottom: 7px !important;
+
+  margin-top: -30px !important;
+
+}
+
+.myTd1 {
+
+  border-top: 0.05px solid #fbfcfb00 !important
+
+}
+
+
+ 
+.myTd2 {
+
+  padding: 11.2px 14px !important;
+
+}
+
+.myTd3 {
+
+  margin-left: 3px !important;
+
+}
+
+
+
+.modal-header {
+
+  background: #c04848;
+
+}
+
+.modal-header .close {
+
+  color:white;
+
+}
+
+.modal-header h3 {
+
+  color: white;
+
+  font-family: font1;
+
+}
+
+.modal-header .close {
+
+  margin-top: -36px;
+
+}
+
+.check-network .modal-dialog {
+
+  width: 372px;
+
+  margin: 11% auto;
+
+}
+
+.myHeader {
+
+  padding: 12.1px 0px !important;
+
+  font-family: font1 !important;
+
+  font-size: 24px !important;
+
+  background: #11147f;
+
+  border-top: 0.1px solid grey !important;
+
+  text-align: center !important;
+
+}
+
+.table > thead > tr > th {
+
+  vertical-align: bottom;
+
+  border-bottom: none !important;
+
+}
+
+.relative {
+
+  position: relative;
+
+}
+
+td, th {
+
+  vertical-align: middle !important;
+
+  font-family: font2 !important;
+
+  font-weight: normal !important;
+
+  padding: 9.2px 23px !important;
+
+  border-top: none !important;
+
+}
+
+
+
+.table img {
+
+  width: 35px !important;
+
+  height: 35px !important;
+
+}
+
+table.lastTable, .lastTable thead, .lastTable tr{
+
+  display: block !important;
+
+  overflow: hidden !important;
+
+}
+
+.lastTable .myTd {
+
+  width: 33% !important;
+
+  display: inline-block;
+
+  margin-right: 5px;
+
+  margin-left: -11px;
+
+}
+
+
+
+.slick-prev, .slick-next, .slick-dots{
+
+  display: none !important;
+
+}
+
+.block{
+
+  display: block !important;
+
+}
+
+
+
+
+
+.fullWidth {
+
+  width: 100%;
+
+}
+
+
+
+.right {
+
+  text-align: right;
+
+}
+
+
+
+.left {
+
+  text-align: left;
+
+}
+
+
+
+.center {
+
+  text-align: center;
+
+}
+
+
+
+.centerImage {
+
+  margin: auto;
+
+  display: block;
+
+}
+
+
+
+.floatLeft {
+
+  float: left;
+
+}
+
+
+
+.floatRight {
+
+  float: right;
+
+}
+
+
+
+a {
+
+  text-decoration: none;
+
+  background-color: inherit !important;
+
+  color:inherit;
+
+}
+
+
+
+a:hover {
+
+  text-decoration: none !important;
+
+}
+
+
+
+.off {
+
+  display: none;
+
+}
+
+
+
+.show {
+
+  display: block;
+
+}
+
+
+
+.hidden {
+
+  visibility: hidden;
+
+}
+
+
+
+.bold {
+
+  font-weight: bold;
+
+}
+
+
+
+.boldFont {
+
+  font-family: font1;
+
+}
+
+
+
+
+
+@media screen and (max-width: 768px) {
+
+  .container-fluid {
+
+    padding-right: 0px!important;
+
+    padding-left: 0px!important;
+
+ }
+
+
+
+}
+
+@media screen and (max-width: 1357px) {
+
+
+
+  td, th {
+
+    padding: 9.2px 14px !important;
+
+  }
+
+  .lastTable .myTd {
+
+    margin-right: 5px;
+
+    margin-left: -9px;
+
+    padding-left: 25px !important;
+
+  }
+
+}
+
+
+
+.center {
+
+  text-align: center;
+
+}
+
+
+
+.centerImage {
+
+  margin: auto;
+
+  display: block;
+
+}
+
+
+
+.floatLeft {
+
+  float: left;
+
+}
+
+
+
+.floatRight {
+
+  float: right;
+
+}
+
+
+
+a {
+
+  text-decoration: none;
+
+  background-color: inherit !important;
+
+  color:inherit;
+
+}
+
+
+
+a:hover {
+
+  text-decoration: none !important;
+
+}
+
+
+
+.off {
+
+  display: none;
+
+}
+
+
+
+.show {
+
+  display: block;
+
+}
+
+
+
+.hidden {
+
+  visibility: hidden;
+
+}
+
+
+
+.bold {
+
+  font-weight: bold;
+
+}
+
+
+
+.boldFont {
+
+  font-family: font1;
+
+}
+
+#amazingslider-wrapper-1 {
+
+  display:block;
+
+  position:relative;
+
+  max-width: 100%;
+
+  height: 100%;
+
+  margin:0 auto;
+
+  z-index: 200
+
+}
+
+ul.amazingslider-slides {
+
+  width: 100%;
+
+  padding: 0px !important;
+
+}
+
+.frame2 {
+
+  margin-top: -30px !important;
+
+}
+
+#amazingslider-1 {
+
+  display:block;
+
+  position:relative;
+
+  margin:0 auto;
+
+}
+
+.amazingslider-slides {
+
+  display:none;
+
+}
+
+.newsImages img {
+
+  height: 38px;
+
+}
+
+
+
+
+
+@media screen and (max-width: 1357px) {
+
+
+
+  .myHeader1 {
+
+    margin-top: 9px !important;
+
+  }
+
+  .myScroll {
+
+     margin-top: 9px !important;
+
+   }
+
+
+
+}
+
+
+
+@media screen and (min-width: 1276px) and (max-width: 1276px) {
+
+
+
+  .myScroll {
+
+    margin-top: 15px !important;
+
+  }
+
+  .myHeader1 {
+
+    margin-top: 14px !important;
+
+  }
+
+
+
+}
+
+@media screen and (max-width: 1300px) {
+
+  .myHeader1 {
+
+    margin-top: 14px !important;
+
+  }
+
+
+
+}
+

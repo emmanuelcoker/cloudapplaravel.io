@@ -12,18 +12,18 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&display=swap" rel="stylesheet">
     <link href="{{Path::asset('admin/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{Path::asset('admin/assets/css/forms/switches.css')}}">
-    
+
     @if(!Auth::user()->dark_mode)
     <!-- implement color theme for light mode -->
     <style>
         :root{
             --themeColor1: #fff;
             --themeColor2: #445ede;
-            --themeColor3: #515365;  
+            --themeColor3: #515365;
             /* for sidebar nav  links    */
-            --themeColor4: #3b3f5c;  
+            --themeColor4: #3b3f5c;
             /* profile info   */
-            --themeColor5: #fafafa;    
+            --themeColor5: #fafafa;
             --themeColor6: #304aca;
             --dashboardCard : #fff;
             --blackText: #0e1726;
@@ -88,7 +88,7 @@
         .fq-header-wrapper h1 {
             font-size: 33px;
             font-weight: 700;
-            margin-bottom: 8px; 
+            margin-bottom: 8px;
             color: rgba(0, 0, 0, 0.6);
         }
 
@@ -175,7 +175,7 @@
             </ul>
 
             <ul class="navbar-item flex-row search-ul">
-            
+
             </ul>
 
             <ul class="navbar-item flex-row navbar-dropdown">
@@ -257,7 +257,7 @@
                         @endif
                     </div>
                 </li>
-                
+
                 <li class=" nav-item dropdown message-dropdown">
                                                     <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="messageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
@@ -325,7 +325,7 @@
                                 </svg> <span>Log Out</span>
                             </a>
                         </div>
-                        
+
                         <div class="dropdown-item" style="display:flex; justify-content: center; align-items: center; text-align: center; padding-top:20px">
                         <div>
                         <span style="display:block;  margin:0px auto 10px auto;">Dark Mode is @if(Auth::user()->dark_mode) On @else Off @endif</span>
@@ -433,7 +433,7 @@
                     </li>
                     @endif
 
-                    
+
                     @if($setting->show_banner == true && Permission::check('visibility_banner'))
                     <li class="menu">
                         <a href="{{route('banner.index')}}" aria-expanded="false" class="dropdown-toggle">
@@ -464,7 +464,7 @@
                     </li>
                     @endif
 
-                    
+
 
                     @if($setting->show_template == true && Permission::check('visibility_template'))
                     <li class="menu">
@@ -500,9 +500,9 @@
                     </li>
                     @endif
 
-                   
 
-                    
+
+
 
 
                     @if($setting->show_announcement == true && Permission::check('visibility_annouce'))
@@ -946,7 +946,7 @@
 
 
 
-  
+
 
     <script type="text/javascript">
         feather.replace();
@@ -954,7 +954,7 @@
      @livewireScripts
 
      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-     
+
      <x-livewire-alert::scripts />
 </body>
 

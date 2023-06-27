@@ -23,7 +23,7 @@
                                             <button style="display: block; margin: auto;" type="button" class="btn btn-md btn-primary" data-toggle="modal" data-target="#createZone">View {{$industryData->name}} Zones</button>
                                         </div>
                                     </div>
-                                </div>
+                                </div> 
                             </div>
                         </div>
                     </div>

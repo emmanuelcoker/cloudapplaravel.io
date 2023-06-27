@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+
+    <meta http-equiv="Pragma" content="no-cache">
+
+    <meta http-equiv="Expires" content="0">
+
+    <meta name="description" content="">
+    <meta http-equiv="pageid" content="<? echo rand(); ?>">
+
+    <title>Published Copy</title>
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+<link rel="stylesheet" type="text/css" href="css/custom2.css" />
+
+<link rel="stylesheet" type="text/css" href="css/style1.css" />
+
+<link href="sliderengine/slick/slick.css" rel="stylesheet" type="text/css" media="all" />
+
+<link href="sliderengine/slick/slick-theme.css" rel="stylesheet" type="text/css" media="all" />
+<script src="sliderengine/jquery.js"></script>
+<script src="js/moment-with-locales.min.js"></script>
+<script src="js/moment-timezone-with-data.min.js"></script>
+<script type="text/javascript" src="sliderengine/html5gallery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+   
+    <style type="text/css">
+        /*Clock Style*/
+        #info-box {
+            width: 100%;
+            margin: auto;
+            border: solid 0px;
+        }
+
+        /*ul li{
+list-style-type: none;
+}*/
+        .dot {
+            /*margin: auto;*/
+            /*top: 0; left: 0; bottom: 0; right: 0;*/
+            margin-top: -10px;
+            /*font-family: 'Source Sans Pro', sans-serif;*/
+            font-family: 'Lato', sans-serif;
+            text-align: ;
+            color: white;
+            font-size: 30px;
+            margin-left: -5px;
+            margin-right: -5px;
+        }
+
+        .time_look {
+            /*background-color: #3d3b3be3;*/
+            background-color: #2c2929;
+            padding: 6px;
+            width: 20px;
+            border-radius: 8px;
+            border-color: #3d3b3bb0;
+            letter-spacing: 5px;
+            box-shadow: 2px 2px 4px #2726266e;
+            font-family: 'Lato', sans-serif;
+            font-weight: lighter;
+            font-size: 17px;
+            text-align: center;
+        }
+
+
+        #date {
+            /*background-color: #2c2929;*/
+            padding-top: 40px;
+            font-family: 'Lato', sans-serif;
+            text-align: center;
+            margin-top: 20px;
+            text-align: center;
+            color: white;
+            font-size: 10px;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            padding-top: 5px;
+            margin-left: 30px;
+            /*color: white;*/
+        }
+
+
+        #day {
+            padding-top: 0px;
+            font-family: courier, monospace;
+            text-align: center;
+            margin: auto;
+            text-align: center;
+            color: white;
+            font-size: 30px;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            padding-top: 0px;
+        }
+
+        .naviMenu ul li {
+            list-style-type: none;
+            display: inline;
+            margin-top: 10px;
+            margin-bottom: 50px;
+            /*text-align:center;*/
+            margin-right: 10px;
+        }
+
+        .fx_currency {
+            font-size: 17px;
+        }
+
+        .fx_currency_div {
+            display: inherit;
+        }
+
+        .modal-dialog {
+            width: 1340px;
+            margin: 30px auto;
+        }
+
+        .modal-body {
+            position: relative;
+            padding: 21px 50px;
+            color: black;
+        }
+
+        .mydate {
+            font-size: 18px;
+        }
+
+        .option1 {
+            background: url("flag/USD.png") center / contain no-repeat;
+        }
+
+        .option2 {
+            background: url("flag/EUR.png") center / contain no-repeat;
+        }
+
+        .option3 {
+            background: url("flag/GBP.png") center / contain no-repeat;
+        }
+
+        .floatImage {
+            display: block;
+            float: right;
+            margin-top: -37px;
+        }
+
+        .style:focus {
+            background-color: #036603;
+            border: 1px solid #036603;
+        }
+
+
+
+
+        .vl {
+            display: inline-block;
+            border-left: 1px solid red;
+            height: 60px;
+            margin-bottom: -30px;
+            margin-top: -30px;
+        }
+    </style>
+  
+    <style>
+        #loaderBody {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: fixed;
+            background: black;
+            color: white;
+            z-index: 999000000000000;
+        }
+    </style>
+    <script>
+        setTimeout(function() {
+            document.getElementById('loaderBody').style.display = 'none';
+        }, 5000);
+    </script>
+
+</head>
+
+
+<body style="background-color:" changePageID="<? echo rand(); ?>">
+
+    <input type="hidden" name="cur_update_key" value="159263730833700update175190587660103">
+    <div id="loaderBody">
+        <div class="loader">
+            <img src="time/loader.gif" alt="" width="350">
+        </div>
+    </div>
+
+    <div class="container-fluid">
+
+
+    <div class="row">
+
+            <div class="videoSection col-md-12 col-lg-12 col-sm-12 padOff">
+            <div style="display:none;margin:0 auto;" class="html5gallery" data-html5player="true" data-width="900" data-height="370" data-resizemode="fill" data-showsocialmedia="false" data-skin="none" data-autoslide="true" data-autoplayvideo="true" data-effect="crossfade" data-showcarousel="false" data-showtitle="false"  data-bgcolor="#000" data-slideshadow="false" data-galleryshadow="false" data-padding="0">
+                                                                                                                    <a href="video/item01.mp4"><img src="logo/logo01.png" alt="item01"></a>
+                                                                                                                                                                                                                                <a href="video/item02.mp4"><img src="logo/logo01.png" alt="item02"></a>
+                                                                                                                                                                                                                                <a href="video/item03.mp4"><img src="logo/logo01.png" alt="item03"></a>
+                                                                                                                                                                                                                                <a href="video/item04.mp4"><img src="logo/logo01.png" alt="item04"></a>
+                                                                                                                                                                                                                                <a href="video/item05.mp4"><img src="logo/logo01.png" alt="item05"></a>
+                                                                                                                        </div>
+
+                <div class="row underVideo" style="margin-top:-10px">
+                    <div class="col-md-2 padRightOff" style="margin-top: -4.6px;">
+
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <div>
+                                    <h4 class="myHeader1" style="line-height: 30px;">&nbsp;&nbsp;&nbsp;  Today&#039;s News </h4>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <a data-target=".check-networ" id="template_logo" data-toggle="modal" id="check-network" type="button">
+
+                                    <div class="slide1" style="width:100%"> 
+                                                                            <div><img src="logo/logo01.png" alt="" title="" /></div>
+                                                                                <div><img src="logo/logo02.png" alt="" title="" /></div>
+                                                                                <div><img src="logo/logo03.png" alt="" title="" /></div>
+                                                                                <div><img src="logo/logo04.png" alt="" title="" /></div>
+                                                                                <div><img src="logo/logo05.png" alt="" title="" /></div>
+                                                                                
+                                    </div>
+
+                                </a>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-10 ">
+
+                        <span class="myScroll" style="height: 62px">
+
+                        <marquee id="mymarquee" style="margin-top: 0px">
+                                
+                                                            </marquee>
+
+                        </span>
+                        <div class="row">
+                            <div class="col-md-8 padLeftOff">
+                                    <div class="slide2">
+                                                                <div><img src="banner/banner01.png" alt="" title="" /></div>
+                                                        <div><img src="banner/banner02.png" alt="" title="" /></div>
+                                                        <div><img src="banner/banner03.png" alt="" title="" /></div>
+                                                        <div><img src="banner/banner04.png" alt="" title="" /></div>
+                                                        <div><img src="banner/banner05.png" alt="" title="" /></div>
+                                                            </div>
+                            </div>
+                            <div class="col-md-4 padLeftOff">
+                                                            <iframe  src="http://127.0.0.1:8000/CLO/DE_MO_2021000/App/clock/3/index.html" scrolling="no" style=" width: 107%; height: 100%; border: none; margin:0px 0px 0px -30px; padding: 0; overflow:hidden;  "></iframe>
+                                                </div>
+
+            </div>
+
+            
+            </div>
+
+        </div>
+
+        <div class="modal fade card-signin" id="exampleModal0" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 10000;vertical-align: middle;">
+            <div class="modal-dialog modal-dialog-centered" role="document" style="width: 80%;height: 90vh">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="row">
+                            <div class="col-md-4" style="text-align: center">
+                                <div class="form-label-group">
+                                    <p class="mydate">Date and Time (Compulsory)</p>
+                                    <input class="form-control" type="datetime-local" id="update_date">
+                                </div>
+                            </div>
+                            <div class="col-md-4" style="text-align: center">
+                                <p class="mydate">Last Update On : <span id="fx_date"></span> </p>
+                                <button data-dismiss="modal" aria-label="Close" class="btn btn-lg btn-danger btn-block text-uppercase"> Bact To Display</button>
+                            </div>
+
+                            <div class="col-md-4" style="text-align: center">
+                                <p class="mydate">Click to update</p>
+                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" id="submit" onclick="submit()">UPDATE</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-body mysettings form-signin">
+
+                        <div class="row">
+
+                            <ul class="nav nav-tabs" id="myTab" role="tablist" style="align-items:center">
+
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="hide" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">FX RATE</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="hide1" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Network Status</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="hide2" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Announcement & Scheduled Communication</a>
+                                </li>
+                                <p id="demo" style="float: right;"></p>
+                                <!-- <p id="demo"></p> -->
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="row" style="height: 20vh" id="fol">
+
+                                    <!-- <div><p id="demo" style="float: right;"></p></div> -->
+                                    <div style="font-size:20px;font-weight: bolder; margin-top: 30px;margin-left: 90px">
+                                        <img src="logo/" alt="" title="" style="width: 92%;
+height: 400px;object-fit: cover;" />
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                                                                        <div class="col-md-4">
+                                        <h5 class="card-title text-center" style="margin-bottom: 30px"> Rate Guide</h5>
+                                        <div id="dynamic_exchange_body1"></div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <h5 class="card-title text-center" style="margin-bottom: 40px"> PTA Rate</h5>
+                                        <div id="dynamic_pta_body1"></div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h5 class="card-title text-center" style="margin-bottom: 20px"> Interest Rate</h5>
+                                        <div class="row">
+                                            <div class="col" id="dynamic_interest_body2"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+
+
+                                    </div>
+                                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                        <div class="row">
+                                            <div class="col-md-7" style="height: 50vh">
+
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <button id="online" class="btn btn-lg btn-success btn-block text-uppercase style" style="position: absolute;right: 0;margin-top: 10px; font-size: 15px">Online Connection</button>
+                                                    </div>
+                                                    <div class="col-md-2"></div>
+                                                    <div class="col-md-5">
+                                                        <button id="offline" class="btn btn-lg btn-success btn-block text-uppercase style" style="position: absolute;right: 0;margin-top: 10px; font-size: 15px">Server Connection</button>
+                                                    </div>
+                                                </div>
+                                                <div style="margin-top: 70px;height: 35vh" id="ubaiframeHolder"></div>
+
+
+                                                <!-- <iframe id="http://bing.com" style="margin-top: 10px" src="https://www.bing.com/search?igu=1" width = "100%" height="100%">
+        Sorry your browser does not support inline frames.
+    </iframe> -->
+                                            </div>
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-4" style="height: 50vh">
+                                                <button id="fast" class="btn btn-lg btn-success btn-block text-uppercase style" style="position: absolute;right: 0;margin-top: 10px;font-size: 15px">Speed Test</button>
+                                                <div style="margin-top: 70px;height: 35vh" id="iframeHolder"></div>
+                                            </div>
+                                        </div>
+                                        <!-- <iframe id="check-network2" style="margin-top: 10px" src="check-network.html"  scrolling="no" width = "100%" height="100%">
+Sorry your browser does not support inline frames.
+</iframe> -->
+
+                                    </div>
+                                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                        <div class="row" style="margin-top: 3px;background-color: #180b50;height: 40vh">
+                                            <div class="row" style="margin-top: 2px;">
+                                                <div class="col-md-4"></div>
+                                                <div class="col-md-4" style="margin-top: 6%">
+                                                    <a href="./announce.html" style="color: white;font-size: 30px" target="_blank">
+                                                        <button class="btn btn-lg btn-primary btn-block text-uppercase">Announcement</button></a>
+                                                </div>
+                                                <div class="col-md-4"></div>
+
+                                            </div>
+                                            <div class="row" style="margin-top: 3px;">
+                                                <div class="col-md-4"></div>
+                                                <div class="col-md-4" style="margin-top: 2%">
+                                                    <a href="./morning.html" style="color: white;font-size: 30px" target="_blank">
+                                                        <button class="btn btn-lg btn-primary btn-block text-uppercase">Morning Scheduled Communication</button></a>
+                                                </div>
+                                                <div class="col-md-4"></div>
+                                            </div>
+                                            <div class="row" style="margin-top: 3px;">
+                                                <div class="col-md-4"></div>
+                                                <div class="col-md-4" style="margin-top: 2%">
+                                                    <a href="./afternoon.html" style="color: white;font-size: 30px" target="_blank">
+                                                        <button class="btn btn-lg btn-primary btn-block text-uppercase">Afternoon Scheduled Communication</button></a>
+                                                </div>
+                                                <div class="col-md-4"></div>
+                                            </div>
+                                            <div class="row" style="margin-top: 3px;">
+                                                <div class="col-md-4"></div>
+                                                <div class="col-md-4" style="margin-top: 2%">
+                                                    <a href="./evening.html" style="color: white;font-size: 30px" target="_blank">
+                                                        <button class="btn btn-lg btn-primary btn-block text-uppercase">Evening Scheduled Communication</button></a>
+                                                </div>
+                                                <div class="col-md-4"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+            function handleClick(e) {
+
+                let element = $('#check-network2').attr('src', 'check-network.html');
+
+            }
+        </script>
+
+        <script src="sliderengine/slick/slick.min.js"></script>
+
+        <script src="sliderengine/slick/utility.js"></script>
+
+
+        <a href="http://127.0.0.1:8000/CLO/DE_MO_2021000/App/train/item01.png"></a>
+
+        <a href="http://127.0.0.1:8000/CLO/DE_MO_2021000/App/index.html?nocache=341859"></a>
+        <a href="http://127.0.0.1:8000/CLO/DE_MO_2021000/App/announce.html"></a>
+        <a href="http://127.0.0.1:8000/CLO/DE_MO_2021000/App/morning.html"></a>
+        <a href="http://127.0.0.1:8000/CLO/DE_MO_2021000/App/afternoon.html"></a>
+        <a href="http://127.0.0.1:8000/CLO/DE_MO_2021000/App/evening.html"></a>
+
+                <a href="http://127.0.0.1:8000/CLO/DE_MO_2021000/App/train/item01.mp4"></a>
+                <a href="http://127.0.0.1:8000/CLO/DE_MO_2021000/App/train/item02.mp4"></a>
+                <a href="http://127.0.0.1:8000/CLO/DE_MO_2021000/App/train/item03.mp4"></a>
+                <a href="http://127.0.0.1:8000/CLO/DE_MO_2021000/App/train/item04.mp4"></a>
+                <a href="http://127.0.0.1:8000/CLO/DE_MO_2021000/App/train/item05.mp4"></a>
+        
+        <a href="http://127.0.0.1:8000/CLO/DE_MO_2021000/App/announce/announce.png"></a>
+
+        <a href="http://127.0.0.1:8000/CLO/DE_MO_2021000/App/scheduledplaylist/scheduleplaylist.xlsx"></a>
+
+        <a href="http://127.0.0.1:8000/CLO/DE_MO_2021000/App/multimedia/index.html"></a>
+
+        <a href="http://127.0.0.1:8000/CLO/DE_MO_2021000/App/templates/templatestyle.xlsx"></a>
+
+                    <a href="http://127.0.0.1:8000/CLO/DE_MO_2021000/App/clock/1/index.html"></a>
+                            <a href="http://127.0.0.1:8000/CLO/DE_MO_2021000/App/clock/2/index.html"></a>
+                                    <a href="http://127.0.0.1:8000/CLO/DE_MO_2021000/App/clock/4/index.html"></a>
+        
+        <a href="http://127.0.0.1:8000/CLO/DE_MO_2021000/App/webview2/index.html"></a>
+
+        <a href="http://127.0.0.1:8000/CLO/DE_MO_2021000/App/rss/news.xlsx"></a>
+
+        <a href="http://127.0.0.1:8000/CLO/DE_MO_2021000/App/time/time.png"></a>
+        <a href="http://127.0.0.1:8000/CLO/DE_MO_2021000/App/videobank"></a>
+
+
+
+        
+                                    
+                                                                                    <a href="http://127.0.0.1:8000/CLO/DE_MO_2021000/App/video/item01.mp4"></a>
+                                                                                                                                            
+                                                                                    <a href="http://127.0.0.1:8000/CLO/DE_MO_2021000/App/video/item02.mp4"></a>
+                                                                                                                                            
+                                                                                    <a href="http://127.0.0.1:8000/CLO/DE_MO_2021000/App/video/item03.mp4"></a>
+                                                                                                                                            
+                                                                                    <a href="http://127.0.0.1:8000/CLO/DE_MO_2021000/App/video/item04.mp4"></a>
+                                                                                                                                            
+                                                                                    <a href="http://127.0.0.1:8000/CLO/DE_MO_2021000/App/video/item05.mp4"></a>
+                                                                                                                
+
+        <script>
+            $(function() {
+                $('#fast').click(function() {
+                    // if(!$('#iframe').length) {
+                    $('#iframeHolder').html('<iframe id="https://fast.com/" src="https://fast.com/" width="100%" height="100%" scrolling="no" style="-webkit-transform:scale(1.0);-moz-transform-scale(1.0);"></iframe>');
+                    // }
+                });
+
+                $('#online').click(function() {
+                    // if(!$('#iframe').length) {
+                    $('#ubaiframeHolder').html('<iframe id="http://192.168.1.43:81/uba/" src="https://www.bing.com/?id=1" width="100%" height="100%" scrolling="yes" style="-webkit-transform:scale(1.0);-moz-transform-scale(1.0);"></iframe>');
+                    // }
+                });
+
+                $('#offline').click(function() {
+                    // if(!$('#iframe').length) {
+                    $('#ubaiframeHolder').html('<iframe id=\'http://127.0.0.1:8000/CLO/DE_MO_2021000/App/index.html\' src=\'http://127.0.0.1:8000/CLO/DE_MO_2021000/App/index.html\' width="100%" height="100%" scrolling="yes" style="-webkit-transform:scale(1.0);-moz-transform-scale(1.0);"></iframe>');
+                    // }
+                });
+            });
+            // function hide(){
+            //     alert("Hello")
+            //     var x = document.getElementById("myDIV");
+            //       if (x.style.display === "none") {
+            //         x.style.display = "block";
+            //       }
+            // }
+            $(document).ready(function() {
+                $("#hide").click(function() {
+                    $("#fol").hide();
+                });
+                $("#hide1").click(function() {
+                    $("#fol").hide();
+                });
+                $("#hide2").click(function() {
+                    $("#fol").hide();
+                });
+            });
+
+            function isOnline() {
+                // alert("hello");
+                if (navigator.onLine) {
+                    document.getElementById(
+                        "demo").innerHTML = "<span class='badge badge-success' style='background:green'>You are online</span>";
+                } else {
+                    document.getElementById(
+                        "demo").innerHTML = "<span class='badge badge-success' style='background:red'>You are offline</span>";
+                }
+            }
+
+            $(document).ready(function(e) {
+                $(".wrap").css("background-color", "yellow");
+
+                $('.interest_slider').slick({
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 7000,
+                    dots: false,
+                    prevArrow: false,
+                    nextArrow: false
+                });
+
+
+
+            });
+
+            $("#template_logo").on("click", function() {
+                console.log("logo is double clicked")
+                isOnline();
+                // window.location.href  = "settings/settings.html"
+                $("#exampleModal0").modal('show');
+            })
+        </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <script type="text/javascript">
+            /*I'll be cleaning this code up. There's definitely some redundancy in calling a new Date() object, for example*/
+
+            //create document ready function
+            $(document).ready(function() {
+
+                //create function to display the time
+                
+                function displayDate() {
+                    var currentDate = new Date();
+                    var days_in_full = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                    var days = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
+                    var day = days[currentDate.getDay()];
+                    var day_in_full = days_in_full[currentDate.getDay()];
+
+
+                    var year = currentDate.getFullYear();
+                    var date = currentDate.getDate();
+                    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                    var s_months = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+                    var month = months[currentDate.getMonth()];
+                    var s_month = months[currentDate.getMonth()];
+                    if (date < 10) {
+                        date = "0" + date;
+                    }
+
+                    $("#date").text(day + " - " + date + " - " + month + " - " + year);
+
+                    $("#day").text(day_in_full);
+                    $("#today").text(date);
+                    $("#month").text(s_month);
+                    $("#year").text(year);
+                    $("#l_calendar").text(day_in_full + " - " + date + " - " + s_month + " - " + year)
+                    $("#sdate").text(date + " - " + s_month + " - " + year);
+                }
+
+                function getTime(){
+                                    var meridiems = " AM";
+                                    $.ajax({
+                                        url: "http://127.0.0.1:8000/api/get_server_time",
+                                    data: {
+
+                                    },
+                                    success:function(data){
+                                        if(data != ""){
+                                        let res = JSON.parse(data)
+                                        console.log(res.hours)
+                                        var hours = res.hours;
+                                        var minutes = res.minutes;
+                                        var seconds = res.seconds;
+                                        var day_in_full = res.date;
+                                        var date = res.day;
+                                        var s_month = res.month;
+                                        var year = res.year;
+
+                                        if(hours>11){
+                                            hours = hours - 12;
+                                            meridiems = " PM";
+                                        }
+                                        if(hours === 0){
+                                            hours = 12;
+                                        }
+                                        if (hours<10){
+                                            hours = "0" + hours;
+                                        }
+                                        if (minutes<10){
+                                            minutes = "0" + minutes;
+                                        }
+                                        if (seconds<10){
+                                            seconds = "0" + seconds;
+                                        }
+                                        $("#hour").text(hours);
+                                        $("#minute").text(minutes);
+                                        $("#second").text(seconds);
+                                        $("#meridiem").text(meridiems);
+                                        $("#calendar").text(day_in_full+" - "+date+" - "+s_month+" - "+year);
+                                        localStorage.setItem("time", JSON.stringify(JSON.parse(data)));
+                                        var divs = document.getElementsByTagName("div");
+                                        for(var i = divs.length; i-- ;) {
+                                            var div = divs[i];
+                                            if(div.className === "response") {
+                                                div.style.display = "none";
+                                                // ul.style.display = "none";
+                                            }
+
+                                            if(div.className === "responses") {
+                                                div.style.display = "block";
+                                                // ul.style.display = "none";
+                                            }
+                                        }
+                                    }else{
+                                        res = JSON.parse(localStorage.getItem("time"));
+                                        console.log(res);
+                                        day_in_full = res.date;
+                                        date = res.day;
+                                        s_month = res.month;
+                                        year = res.year;
+                                        console.log("year "+year)
+                                        $("#storage_calendar").text(day_in_full+" - "+date+" - "+s_month+" - "+year);
+                                        var divs = document.getElementsByTagName("div");
+                                        for(var i = divs.length; i-- ;) {
+                                            var div = divs[i];
+                                            if(div.className === "response") {
+                                                div.style.display = "block";
+                                                // ul.style.display = "none";
+                                            }
+
+                                            if(div.className === "responses") {
+                                                div.style.display = "none";
+                                                // ul.style.display = "none";
+                                            }
+                                        }
+
+
+
+
+
+                                    }
+                                    },
+                                    error:function(xhr, status, error){
+                                        console.log("Error: ", error);
+                                        res = JSON.parse(localStorage.getItem("time"));
+                                        console.log(res);
+                                        day_in_full = res.date;
+                                        date = res.day;
+                                        s_month = res.month;
+                                        year = res.year;
+                                        console.log("year "+year)
+                                        $("#storage_calendar").text(day_in_full+" - "+date+" - "+s_month+" - "+year);
+                                        var divs = document.getElementsByTagName("div");
+                                        for(var i = divs.length; i-- ;) {
+                                            var div = divs[i];
+                                            if(div.className === "response") {
+                                                div.style.display = "block";
+                                                // ul.style.display = "none";
+                                            }
+
+                                            if(div.className === "responses") {
+                                                div.style.display = "none";
+                                                // ul.style.display = "none";
+                                            }
+                                        }
+                                    }
+                                })
+
+                                }
+
+
+                                                // displayTime();
+                setInterval(getTime, 1000);
+                // displayDay();
+                displayDate();
+
+            });
+
+
+            window.onload = function() {
+                console.log("Start up");
+                this.getTime;
+            }
+        </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+        
+
+
+
+
+
+
+                <!-- iframe for announcement popup -->
+        <div id="parent">
+            <iframe id="annouceID" src="announce.html" style="
+                position: fixed;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                z-index: 999999;
+            ">
+                Your browser doesn't support iframes
+            </iframe>
+        </div>
+
+                <script>
+            $('#annouceID').remove();
+            //announcement
+            window.setInterval(function() {
+                var date = new Date();
+                var myday = date.getDate();
+                var hours = date.getHours();
+                var minutes = date.getMinutes();
+                var second = date.getSeconds();
+                if (myday == '01' && hours == '00' && minutes == '00' && second == 1) {
+                    $('#parent').append('<iframe  src="announce.html" style=" position: fixed; top: 0; left: 0; bottom: 0; right: 0; width: 100%; height: 100%; border: none; margin: 0; padding: 0; overflow: hidden; z-index: 999999; ">');
+                    console.log('done');
+                }
+            }, 1000);
+        </script>
+
+                <script>
+            window.setInterval(function() {
+                var date = new Date();
+                var myday = date.getDate();
+                var hours = date.getHours();
+                var minutes = date.getMinutes();
+                if (myday == '01' && hours == '00' && minutes == '00') {
+                    $('#parent').remove();
+                }
+            }, 1000);
+        </script>
+        
+
+
+
+
+
+
+        <!-- training -->
+                <!-- end training -->
+
+
+</body>
+
+</html>

@@ -63,23 +63,23 @@ return [
             ]) : [],
         ],
 
-        // //connecting to remote server
-        //  'mysql' => [
-        //      'driver' => 'mysql',
-        //      'url' => env('DATABASE_URL'),
-        //      'host' => '213.171.200.101',
-        //      'port' => '3306',
-        //      'database' => 'webapp_cloudapp',
-        //      'username' => 'Appmaster12345',
-        //      'password' => 'Appmaster12345',
-        //      'unix_socket' => env('DB_SOCKET', ''),
-        //      'charset' => 'utf8mb4',
-        //      'collation' => 'utf8mb4_unicode_ci',
-        //      'prefix' => '',
-        //      'prefix_indexes' => true,
-        //      'strict' => true,
-        //      'engine' => null,
-        //      'options' => [PDO::ATTR_EMULATE_PREPARES => true],
+        //connecting to remote server
+        // 'mysql' => [
+        //     'driver' => 'mysql',
+        //     'url' => env('DATABASE_URL'),
+        //     'host' => '213.171.200.101',
+        //     'port' => '3306',
+        //     'database' => 'webapp_cloudapp',
+        //     'username' => 'Appmaster12345',
+        //     'password' => 'Appmaster12345',
+        //     'unix_socket' => env('DB_SOCKET', ''),
+        //     'charset' => 'utf8',
+        //     'collation' => 'utf8_unicode_ci',
+        //     'prefix' => '',
+        //     'prefix_indexes' => true,
+        //     'strict' => true,
+        //     'engine' => null,
+        //     'options' => [PDO::ATTR_EMULATE_PREPARES => true],
         // ],
 
         'pgsql' => [

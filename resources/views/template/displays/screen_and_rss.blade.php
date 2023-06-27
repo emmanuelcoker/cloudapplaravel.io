@@ -9,6 +9,7 @@
     <script src="sliderengine/html5gallery.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style1.css" />
     <!-- End of head section HTML codes -->
+    <meta http-equiv="pageid" content="<? echo rand(); ?>">
     
     <style type="text/css">
         body, html {
@@ -41,7 +42,7 @@
             float: right;
             background: white;
             color:black;
-            margin-top: -1px;
+            padding: 9.7px 0px;
         }
         
         .flex{
@@ -86,7 +87,7 @@
 
 
 </head>
-<body style="background-color:{{$settings->tv_background}}">
+<body style="background-color:{{$settings->tv_background}}" changePageID="<? echo rand(); ?>">
 <div id="loaderBody">
         <div class="loader">
             <img src="time/loader.gif" alt="" width="350">
@@ -125,7 +126,7 @@
             </div>
             </div>
         </div>
-        <div class="marquee">
+        <div class="marquee" style="margin-top: -0px">
             <div class="flex">
             <marquee width="100%" direction="left" style="margin-top:-10px"  >
             @foreach($custom_news as $news)
@@ -150,6 +151,7 @@
         </div>
     </div>
 
+    <a href="{{$app_url}}{{Variables::tvPath('index.html')}}?nocache=<?php echo rand(100, 998000); ?>"></a>
     <a href="{{$app_url}}{{Variables::tvPath('announce.html')}}"></a>
         <a href="{{$app_url}}{{Variables::tvPath('morning.html')}}"></a>
         <a href="{{$app_url}}{{Variables::tvPath('afternoon.html')}}"></a>

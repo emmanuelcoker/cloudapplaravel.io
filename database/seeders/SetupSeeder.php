@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Announce;
 use Illuminate\Database\Seeder;
 use App\Models\Country;
 use App\Models\Industry;
@@ -73,6 +74,8 @@ class SetupSeeder extends Seeder
             ]
         );
 
+        Announce::firstOrCreate(['tv_id' => 1, 'title' => 'Your annoucement', 'template' => 2]);
+
         Permission::firstOrCreate(['key' => 'can_upload_banners', 'name' => 'Upload banners', 'role' => '["Admin","SuperAdmin"]']);
         Permission::firstOrCreate(['key' => 'can_upload_media_contents', 'name' => 'Upload media contents', 'role' => '["Admin","SuperAdmin"]']);
         Permission::firstOrCreate(['key' => 'can_update_rate', 'name' => 'Update rate', 'role' => '["Admin","SuperAdmin"]']);
@@ -100,6 +103,9 @@ class SetupSeeder extends Seeder
         Permission::firstOrCreate(['key' => 'visibility_manage_users', 'name' => 'Manage users', 'role' => '["SuperAdmin"]']);
         Permission::firstOrCreate(['key' => 'visibility_activity_log', 'name' => 'View activity log', 'role' => '["Admin","SuperAdmin","IT Support"]']);
         Permission::firstOrCreate(['key' => 'global_setting', 'name' => 'Global Setting', 'role' => '["SuperAdmin"]']);
+        Permission::firstOrCreate(['key' => 'can_change_template', 'name' => 'Change Template', 'role' => '["Admin","SuperAdmin"]']);
+        Permission::firstOrCreate(['key' => 'update_box_url', 'name' => 'Publishing', 'role' => '["Admin","SuperAdmin"]']);
+        Permission::firstOrCreate(['key' => 'can_change_time_and_date', 'name' => 'Can change tv time and date', 'role' => '["Admin","SuperAdmin"]']);
 
 
         //moore advice surport

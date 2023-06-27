@@ -23,13 +23,13 @@ class StoreRateToArray
             'interest' => $interest
         ];
 
-        file_put_contents(self::$file, serialize($data));
+        file_put_contents(Path::serverFullAsset(self::$file), serialize($data));
         return 'success';
     }
 
 
     public static function retrieve()
     {
-        return $var = unserialize(file_get_contents(self::$file));
+        return $var = unserialize(file_get_contents(Path::serverFullAsset(self::$file)));
     }
 }

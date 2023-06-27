@@ -27,6 +27,7 @@ class CreateTvsTable extends Migration
             $table->string('color')->nullable(); 
             $table->string('template')->nullable(); 
             $table->string('clockLayout')->nullable(); 
+            $table->string('clock_background_color')->nullable(); 
             $table->string('localUpdateLogo')->nullable(); 
             $table->string('updatedVideo')->nullable(); 
             $table->timestamps();   

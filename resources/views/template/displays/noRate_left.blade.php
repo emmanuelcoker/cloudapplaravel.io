@@ -19,6 +19,7 @@
     <meta name="description" content="">
 
     <title>Published Copy</title>
+    <meta http-equiv="pageid" content="<? echo rand(); ?>">
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 
@@ -29,14 +30,11 @@
     <link href="sliderengine/slick/slick.css" rel="stylesheet" type="text/css" media="all" />
 
     <link href="sliderengine/slick/slick-theme.css" rel="stylesheet" type="text/css" media="all" />
-    <script src="js/bootstrap.min.js"></script>
-
-    <script src="js/moment-with-locales.min.js"></script>
-    <script src="js/moment-timezone-with-data.min.js"></script>
-
     <script src="sliderengine/jquery.js"></script>
+    <script src="js/moment-with-locales.min.js"></script>
+    <script src="js/moment-timezone-with-data.min.js"></script>   
     <script type="text/javascript" src="sliderengine/html5gallery.js"></script>
-
+    <script src="js/bootstrap.min.js"></script>
 
     <style type="text/css">
         /*Clock Style*/
@@ -202,7 +200,7 @@ list-style-type: none;
 </head>
 
 
-<body style="background-color:{{$settings->tv_background}}">
+<body style="background-color:{{$settings->tv_background}}" changePageID="<? echo rand(); ?>">
 <input type="hidden" name="cur_update_key" value="<?php echo rand(99999999999999, 300000000000000) . 'update' . rand(99999999999999, 700000000000000) ?>">
     <div id="loaderBody">
         <div class="loader">
@@ -569,9 +567,7 @@ Sorry your browser does not support inline frames.
         <script src="sliderengine/slick/utility.js"></script>
 
 
-        <a href="{{$app_url}}{{Variables::tvPath('train/item01.png')}}"></a>
-
-
+        <a href="{{$app_url}}{{Variables::tvPath('index.html')}}?nocache=<?php echo rand(100, 998000); ?>"></a>
         <a href="{{$app_url}}{{Variables::tvPath('announce.html')}}"></a>
         <a href="{{$app_url}}{{Variables::tvPath('morning.html')}}"></a>
         <a href="{{$app_url}}{{Variables::tvPath('afternoon.html')}}"></a>
@@ -590,8 +586,17 @@ Sorry your browser does not support inline frames.
 
         <a href="{{$app_url}}{{Variables::tvPath('templates/templatestyle.xlsx')}}"></a>
 
-        @if($tv->clockLayout != 5)
-        <a href="{{$app_url}}{{Variables::tvPath('clock/'.$tv->clockLayout.'/index.html')}}"></a>
+        @if($tv->clockLayout != 1)
+            <a href="{{$app_url}}{{Variables::tvPath('clock/1/index.html')}}"></a>
+        @endif
+        @if($tv->clockLayout != 2)
+            <a href="{{$app_url}}{{Variables::tvPath('clock/2/index.html')}}"></a>
+        @endif
+        @if($tv->clockLayout != 3)
+            <a href="{{$app_url}}{{Variables::tvPath('clock/3/index.html')}}"></a>
+        @endif
+        @if($tv->clockLayout != 4)
+            <a href="{{$app_url}}{{Variables::tvPath('clock/4/index.html')}}"></a>
         @endif
 
         <a href="{{$app_url}}{{Variables::tvPath('webview2/index.html')}}"></a>
@@ -843,7 +848,7 @@ Sorry your browser does not support inline frames.
                     echo 'function getTime(){
                                     var meridiems = " AM";
                                     $.ajax({
-                                    url: "' . $app_url . '/api/get_server_time",
+                                        url: "' . $api_url . '/api/get_server_time",
                                     data: {
 
                                     },
@@ -965,12 +970,7 @@ Sorry your browser does not support inline frames.
 
             window.onload = function() {
                 console.log("Start up");
-                var saved_fx_name = 'fetched_fx_data';
-                var local_fx = JSON.parse(localStorage.getItem(saved_fx_name));
-                console.log('local = ' + local_fx);
-                update_fx_dom(local_fx);
                 this.getTime;
-                setbackground();
             }
         </script>
 
@@ -982,553 +982,8 @@ Sorry your browser does not support inline frames.
 
 
 
-        <!-- to get fx rate -->
-        <script>
-            function update_fx_dom(data) {
-                var fx_data = data.fx_data;
-                var interest_data = data.interest_rate;
-                var interest_rate_update = data.interest_rate_update;
-                var pta_data = data.pta_data;
-                fx_dom_string = ''
-                var fx_dom_string_mobile = '';
-                fx_data.forEach(function myFunction(value, index, array) {
-                    var currency = value.currency.substr(0, 3)
-                    var we_buy = value.we_buy
-                    var we_sell = value.we_sell
-                    var flag = value.flag
 
 
-                    fx_dom_string += "<div  class='row exchange_row frate'>\
-     <div class='col-sm-4' style=''> <div class='col-xs-8'>\
-        <img class='media-object mc' src='flag/images/" + flag + "' alt='...' >\
-     </div>\
-     <div class='col-xs-4' style='padding: 0px'> <p style='float: left'>" + currency + "</p> </div>\
-     </div> <div class='col-sm-4'> <p style='margin-left: 10px;'> " + we_buy + " </p> </div>\
-     <div class='col-sm-4'> <p style='margin-left: 10px;'> " + we_sell + " </p> </div> </div>";
-
-
-                    fx_dom_string_mobile += " <tr ><td><a class='pull-left'  style='padding-right: 10px;'>\
-     <img class='media-object mc' src='flag/" + flag + "'  width='24' height='24'> </a>\
-     <h4 class='ts ts1' style='color: #fff'>" + currency + "</h4> </td>\
-     <td style='text-align: center'><h4 class='ts' style='color: #fff;font-size:20px; font-family:font2 !important;font-weight:normal !important'>" + we_buy + "</h4></td>\
-     <td style='text-align: center'><h4 class='ts' style='color: #fff;font-size:20px; font-family:font2 !important;font-weight:normal !important'>" + we_sell + "</h4></td> </tr>";
-
-
-                })
-                $("#dynamic_exchange_body").html(fx_dom_string);
-                $("#dynamic_exchange_body_mobile").html(fx_dom_string_mobile);
-
-
-                // Add PTA rate with FX Rate
-                pta_dom_string = "";
-                pta_dom_string_mobile = "";
-                pta_data.forEach(function myFunction(value, index, array) {
-                    var name = value.name;
-                    var val = value.value;
-                    /* pta_dom_string += "<div  class='row exchange_row'>\
-                       <div style='margin-top:70px'>\
-                       <div class='col-sm-7' style='margin-left: -20px'>" + name + "</div>\
-                       <div class='col-sm-5' style='text-align:right;padding-right: 10px'>" + val + "</div>\
-                       </div>\
-                     </div>"; */
-
-                    pta_dom_string += "<span class='col-md-4' >" + name + "<span style='margin-left: 5px'>" + val +
-                        "</span></span>";
-
-                    pta_dom_string_mobile +=
-                        "<td  class='myTd2' >" +
-                        name + " " + val + "</td>";
-                })
-                $("#pta_body").html(pta_dom_string);
-                $("#pta_body_mobile").html(pta_dom_string_mobile);
-
-
-                interest_dom_string = ''
-                interest_dom_string_mobile =
-                    "<tr class='tp2'> <th class='tp' width='30%'>RATE%</th> <th width='35%' class='tp' style='white-space: nowrap;'>ABOVE 5M</th> <th width='35%'  class='tp' style='white-space: nowrap;'>BELOW 5M</th> </tr>";
-                interest_data.forEach(function myFunction(value, index, array) {
-                    var category = value.category
-                    var above_5m = value.above_5m
-                    var below_5m = value.below_5m
-                    var above_49 = value.above_49
-                    var above_99 = value.above_99
-                    //    above_5m = 'Negotiable'
-                    //  below_5m = 'Negotiable'
-
-
-                    interest_dom_string +=
-                        "<tr width='100%' style='margin-top: -10px !important;'> <td class='' width='30%' style='font-size:17px; font-family:Lato;'>" + category +
-                        "</td> <td class='' width='20%' style='font-size:17px; font-family:Lato;text-align:center'>" + above_5m +
-                        "</td> <td class='' width='20%' style='padding-left:2px !important;font-size:17px; font-family:Lato;text-align:center'>" + below_5m +
-                        "</td><td class='' width='20%' style='font-size:17px; font-family:Lato;text-align:left'>" + above_49 +
-                        "</td><td class='' width='20%' style='padding-left:2px !important;font-size:17px; font-family:Lato'>" + above_99 +
-                        "</td><td></td></tr>";
-
-                    interest_dom_string_mobile +=
-                        "<tr> <td class='' style='font-size:20px; font-family:Lato'>" + category +
-                        "</td> <td class='' style='font-size:20px; font-family:Lato'>" + above_5m +
-                        "</td> <td class='' style='font-size:20px; font-family:Lato'>" + below_5m +
-                        "</td> <td class='' style='font-size:20px; font-family:Lato'>" + above_49 +
-                        "</td><td class='' style='font-size:20px; font-family:Lato'>" + above_99 +
-                        "</td></tr>";
-
-
-                })
-
-
-                $("#dynamic_interest_body").html(interest_dom_string);
-                $("#dynamic_interest_body_mobile").html(interest_dom_string_mobile);
-
-
-
-                interest_update_th_dom_string = ""
-                interest_update_body_dom_string = ""
-
-                interest_update_dom_string_mobile = "";
-                console.log(interest_rate_update)
-                interest_rate_update.forEach(function myFunction(value, index, array) {
-                    var name = value.name
-                    var values = value.value
-
-                    // console.log(name)
-                    interest_update_dom_string_mobile += "<th class='tp' style='width:0%;font-size:18px;text-align:center' width=''>" + name + "</th>";
-
-                    interest_update_th_dom_string += "<td class='tp' style='width:0%;font-size:18px;text-align:center' width=''>" + name + "</td>";
-
-                    interest_update_body_dom_string +=
-                        "<td class='tp' style='width:2%;margin-right:-40px;font-size:18px;text-align:center'>" + values + "</td>";
-
-                    // interest_update_dom_string_mobile +=
-                    //     "<tr> <td class='' style='font-size:20px; font-family:Lato'>" + value +
-                    //     "</td></tr>";
-
-                })
-                $("#dynamic_interest_update_body").html(interest_update_dom_string_mobile);
-                $("#dynamic_interest_update_th_mobile").html(interest_update_th_dom_string);
-                $("#dynamic_interest_update_body_mobile").html(interest_update_body_dom_string);
-
-
-                $('.interest_slider').slick('unslick');
-                $('.interest_slider').slick({
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    autoplay: true,
-                    autoplaySpeed: 7000,
-                    dots: false,
-                    prevArrow: false,
-                    nextArrow: false
-                });
-
-                var last_update_period = data.last_update_date;
-                //console.log(last_update_period)
-
-                var months = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct",
-                    "Nov", "Dec"
-                ];
-
-                var dateObj = new Date();
-                var month = dateObj.getUTCMonth(); //months from 1-12
-                var day = dateObj.getUTCDate();
-                var year = dateObj.getUTCFullYear();
-
-                newdate = day + "-" + months[month] + "-" + year;
-
-                $(".fx_date").html(newdate)
-            }
-
-
-            function isJson(data) {
-                if (typeof(data) == 'string') {
-                    try {
-                        JSON.parse(data);
-                    } catch (e) {
-                        return false;
-                    }
-                    return true;
-                }
-
-                if (typeof(data) == 'object') {
-                    return true
-                }
-
-            }
-
-
-            function check_fx_update() {
-                //save to local sotrage to use for offline
-                //compare with saved data when a new data is fetched
-                //save to local  and update dom only when  new data is available
-                var saved_fx_name = 'fetched_fx_data';
-                var update_url = "<?php echo  $app_url . '/api/get-rate-update' ?>";
-
-                $.ajax({
-                    url: update_url,
-                    data: {},
-                    error: function(xhr, status, error) {
-                        // alert(xhr.status);
-                        if (localStorage.getItem(saved_fx_name) !== null) {
-                            var local_fx = JSON.parse(localStorage.getItem(saved_fx_name));
-                            update_fx_dom(local_fx);
-                        }
-                        if (localStorage.getItem(saved_fx_name) == 0) {
-                            var local_fx = JSON.parse(localStorage.getItem(saved_fx_name));
-                            update_fx_dom(local_fx);
-                        }
-
-                    },
-                    success: function(data) {
-                        update_fx_dom(data);
-                        localStorage.setItem(saved_fx_name, JSON.stringify(data));
-
-                    },
-                    type: 'POST'
-                });
-
-            }
-            setInterval(check_fx_update, 2 * 1000 * 60);
-            check_fx_update()
-        </script>
-
-
-
-
-
-        <script>
-            var saved_fx_name = 'fetched_fx_data';
-
-            function isJson(data) {
-                if (typeof(data) == 'string') {
-                    try {
-                        JSON.parse(data);
-                    } catch (e) {
-                        return false;
-                    }
-                    return true;
-                }
-
-                if (typeof(data) == 'object') {
-                    return true
-                }
-
-            }
-
-            function update_fx_dom1(data) {
-                // console.log(data);
-                var fx_data = data.fx_data;
-                var pta_data = data.pta_data;
-                var interest_data = data.interest_rate;
-                var interest_rate_update_data = data.interest_rate_update;
-                fx_dom_string = ''
-                fx_data.forEach(function myFunction(value, index, array) {
-                    var currency = value.currency.replace(/\s/g, "").substr(0, 3);
-                    var we_buy = value.we_buy
-                    var we_sell = value.we_sell
-                    var flag = value.flag
-
-
-                    fx_dom_string +=
-                        "<div class='row'><p class='fx_currency'><div class='col-sm-2 form-label-group fx_currency_div' class=''><img src='flag/" +
-                        flag + "' class='fx_currency_flag' width='24' height='24'>" + currency +
-                        "</div></p> <div class='col-sm-5 form-label-group'> <input type='text' class='form-control' id='" +
-                        currency + "_we_buy' placeholder='We Buy' required value='" + we_buy +
-                        "'> <label></label> </div> <div class='col-sm-5 form-label-group'><input type='text' class='form-control'  id='" +
-                        currency + "_we_sell' placeholder='We Sell' required value='" + we_sell +
-                        "' > <label></label> </div> </div>"
-
-
-                })
-                $("#dynamic_exchange_body1").html(fx_dom_string);
-
-
-
-                pta_dom_string = ''
-                pta_data.forEach(function myFunction(value, index, array) {
-                    var name = value.name;
-                    var ptaKey = name.replace(/\s/g, "");
-                    var val = value.value
-
-
-                    pta_dom_string += "<div class='row' style='margin-left:-10px'>\
- <div class='col-sm-2 form-label-group fx_currency_div' class=''>\
-    <p class='fx_currency'>" + name + "</p>\
- </div>\
- <div class='col-sm-7 form-label-group'>\
-    <input type='text' class='form-control' id='" + ptaKey +
-                        "_pta' placeholder='Rate For Today' required value='" + val + "'>\
-    <label></label>\
- </div>\
- </div>\
- "
-
-
-                })
-                $("#dynamic_pta_body1").html(pta_dom_string);
-
-
-
-
-                interest_dom_string = "<div class='row'><div class='col-sm-3'>Deposit</div><div class='col-sm-2'>Call</div><div class='col-sm-2'>30 Days</div><div class='col-sm-2'>60 Days</div> <div class='col-sm-2'>90 Days</div></div>"
-                interest_data.forEach(function myFunction(value, index, array) {
-                    var category = value.id;
-                    var band = value.category
-                    var above_5m = value.above_5m
-                    var below_5m = value.below_5m
-                    var above_49 = value.above_49
-                    var above_99 = value.above_99
-
-
-
-                    interest_dom_string += "<div class='row'> <div class='col-sm-3 form-label-group interest_div' class=''><p class='interest_category'> " +
-                        band +
-                        "</p> </div><div class='col-sm-2 form-label-group'> <input type='text' class='form-control' id='" + category + "_above5m' placeholder='above 10M' required value='" + above_5m +
-                        "'> <label></label> </div> <div class='col-sm-2 form-label-group'><input type='text' class='form-control'  id='" + category + "_below5m' placeholder='Below 10M' required value='" + below_5m +
-                        "' > <label></label> </div> <div class='col-sm-2 form-label-group'><input type='text' class='form-control'  id='" + category + "_above49m' placeholder='Above 49M' required value='" + above_49 +
-                        "' > <label></label> </div> <div class='col-sm-2 form-label-group'><input type='text' class='form-control'  id='" + category + "_above99m' placeholder='Above 49M' required value='" + above_99 +
-                        "' > <label></label> </div> </div>"
-
-                })
-
-                deposit_band = "<div class='row'><div class='col-sm-4'>Deposit</div></div>"
-
-                interest_data.forEach(function myFunction(value, index, array) {
-                    var category = value.category.replace(/\s/g, "");
-                    deposit_band += "<div class='row'><div class='col-sm-3 form-label-group interest_div' class=''><p class='interest_category'> " +
-                        category +
-                        "</p> </div></div>"
-                })
-
-
-                interest_rate_update_offline_dom_string = ""
-                interest_rate_update_data.forEach(function myFunction(value, index, array) {
-                    var name = value.name;
-                    var values = value.value
-                    var id = value.id
-                    interest_rate_update_offline_dom_string += "<div class='row'><div class='col-sm-12'>" + name + "</div></div>"
-
-
-
-
-                    interest_rate_update_offline_dom_string += "<div class='row'> <div class='col-sm-12 form-label-group'> <input type='text' class='form-control' id='" + id + "rate_update' placeholder='" + name + "' required value='" + values +
-                        "'> <label></label> </div></div>"
-                })
-
-
-                $("#dynamic_interest_body1").html(interest_dom_string);
-                $("#dynamic_interest_body2").html(interest_rate_update_offline_dom_string);
-
-                $("#deposit_band").html(deposit_band);
-
-
-
-                var last_update_period = data.last_update_date;
-                $("#fx_date").html(last_update_period)
-
-                var update_source = data.update_source;
-                $("#update_source").html(update_source)
-
-            }
-
-            var local_fx = JSON.parse(localStorage.getItem(saved_fx_name))
-            //console.log(local_fx);
-            if (local_fx) {
-                update_fx_dom1(local_fx)
-            }
-
-
-
-            function isEmpty(param) {
-                console.log('params ' + param)
-                // param = param.replace(/[.*+?^${}()|[\]\\]/g, '');
-                var response = param ? false : true;
-                // console.log('response ' + response);
-                return response
-            }
-
-            function verifyDateTime(date) {
-
-                //for future use, the value for datetime if not enterd correctly is "", so isEmpty is already validataing this. We will return true here
-                var _date = new Date(date)
-
-                var the_date = _date.toLocaleDateString('en-GB');
-
-                var time = _date.toLocaleTimeString('en-GB'); //24 hours
-
-
-                return true
-
-            }
-
-
-
-            function getValuesForAll() {
-                var fx_data = local_fx.fx_data;
-                var pta_data = local_fx.pta_data;
-                var interest_data = local_fx.interest_rate;
-                var interest_rate_update_data = local_fx.interest_rate_update;
-                // console.log("interest data "+fx_data)
-                var empty_value_exists = false;
-
-                var new_fx_data = []
-                fx_data.forEach(function myFunction(value, index, array) {
-                    var currency = value.currency.replace(/\s/g, "").substr(0, 3);
-                    console.log("currency " + currency);
-                    //the dom data for this currency
-                    var updated_we_buy = $("#" + currency + "_we_buy").val()
-                    var updated_we_sell = $("#" + currency + "_we_sell").val()
-                    if (isEmpty(updated_we_buy) || isEmpty(updated_we_sell)) {
-                        empty_value_exists = true
-                        alert("Empty Fields Not Allowed.Please Update " + currency + " Value")
-
-                        return false
-                    }
-
-
-
-
-                    value.we_buy = updated_we_buy
-                    value.we_sell = updated_we_sell
-                    new_fx_data.push(value)
-
-                })
-
-                var rate_update = []
-                interest_rate_update_data.forEach(function myFunction(value, index, array) {
-                    var name = value.name;
-                    var id = value.id;
-                    //the dom data for this currency
-                    var values = $("#" + id + "rate_update").val()
-                    if (isEmpty(values)) {
-                        empty_value_exists = true
-                        alert("Empty Fields Not Allowed.Please Update Value")
-
-                        return false
-                    }
-
-
-
-
-                    value.name = name
-                    value.value = values
-                    rate_update.push(value)
-
-                })
-
-
-
-                var new_pta_data = []
-                pta_data.forEach(function myFunction(value, index, array) {
-                    var name = value.name;
-                    var ptaKey = name.replace(/\s/g, "");
-                    var val = value.value
-                    //the dom data for this currency
-                    var updated_val = $("#" + ptaKey + "_pta").val()
-                    if (isEmpty(updated_val)) {
-                        empty_value_exists = true
-                        alert("Empty Fields Not Allowed.Please Update " + name + " Value")
-                        return false
-                    }
-                    value.value = updated_val
-                    new_pta_data.push(value)
-                })
-
-
-
-                var new_interest_data = []
-                interest_data.forEach(function myFunction(value, index, array) {
-                    // console.log("value "+value)
-                    var category = value.id;
-                    console.log("category " + category)
-                    // var above_5m = value.above_5m
-                    // var below_5m = value.below_5m
-                    // var above_49 = value.above_49
-                    // var above_99 = value.above_99
-
-                    var updated_above_5m = $("#" + category + "_above5m").val()
-                    var updated_below_5m = $("#" + category + "_below5m").val()
-                    var updated_above_49m = $("#" + category + "_above49m").val()
-                    var updated_above_99m = $("#" + category + "_above99m").val()
-
-                    // if (isEmpty(updated_above_5m) || isEmpty(updated_below_5m) || isEmpty(updated_above_49m) || isEmpty(updated_above_99m)) {
-                    //     empty_value_exists = true
-                    //     alert("Empty Fields Not Allowed.Please Update " + category + " Value")
-
-                    //     return false
-                    // }
-                    console.log("5 Million " + updated_below_5m)
-
-
-
-                    value.above_5m = updated_above_5m
-                    value.below_5m = updated_below_5m
-                    value.above_49 = updated_above_49m
-                    value.above_99 = updated_above_99m
-                    new_interest_data.push(value)
-
-
-                })
-
-                //    var update_date1 = $('#update_date').val();
-
-                var date = $('#update_date').val()
-                if (isEmpty(date)) {
-                    empty_value_exists = true
-                    alert("Date Not Entered Accurately.Please Ensure the date and time is set ")
-                } else {
-                    if (!verifyDateTime(date)) {
-                        empty_value_exists = true
-                        alert("Empty Fields Not Allowed.Please Update Date And Time Value ")
-
-                    }
-                }
-
-
-                var update_date = new Date(date)
-                var year = update_date.getFullYear();
-                var month = update_date.toLocaleString('en-us', {
-                    month: 'short'
-                });
-                var _date = update_date.getDate()
-                var time = update_date.toLocaleTimeString('en-GB'); //24 hours
-                var formatted_date = _date + '-' + month + '-' + year
-
-                var formated_period = _date + '-' + month + '-' + year + ' ' + time
-
-
-                var data = {
-                    fx_data: new_fx_data,
-                    pta_data: new_pta_data,
-                    interest_rate: new_interest_data,
-                    interest_rate_update: rate_update,
-                    last_update_date: formatted_date,
-                    last_update_period: formated_period,
-                    // update_date:formatted_date,
-                    update_source: 'local'
-
-                }
-                return empty_value_exists ? false : data
-            }
-
-            function submit() {
-
-                var data = getValuesForAll()
-                console.log(data)
-                if (!data) {
-                    return false
-                }
-
-                localStorage.setItem(saved_fx_name, JSON.stringify(data))
-
-                //   alert("Data Updated")
-                var goToIndex = confirm("Data Updated.Go Back To Main Page?")
-                if (goToIndex) {
-                    window.location.href = "index.html";
-                    // location.reload();
-                }
-
-
-
-            }
-        </script>
 
 
 

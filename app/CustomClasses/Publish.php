@@ -18,7 +18,7 @@ use App\exports\CsvExport;
 use Maatwebsite\Excel\Facades\Excel;
 use ZipArchive;
 
-/* 
+/*
     this class handles all type of publishing functions in this system
 */
 
@@ -85,7 +85,7 @@ class Publish
     {
         $tv_id = session()->get('tv')['id'];
         $data['tv'] = Tv::findOrFail($tv_id);
-        
+
         //converting to static for clock 1
         if ($data['tv']['clockLayout'] == 1) {
             $clockBlade = view('template.clocks.1', $data)->render();
@@ -99,14 +99,14 @@ class Publish
             $clockOutPut = Variables::uploadPath('clock/2/index.html');
             file_put_contents($clockOutPut, $clockBlade);
         }
-        
+
         //converting to static for clock 3
          if ($data['tv']['clockLayout'] == 3) {
             $clockBlade = view('template.clocks.3', $data)->render();
             $clockOutPut = Variables::uploadPath('clock/3/index.html');
             file_put_contents($clockOutPut, $clockBlade);
         }
-       
+
         //converting to static for clock 4
          if ($data['tv']['clockLayout'] == 4) {
             $clockBlade = view('template.clocks.4', $data)->render();
@@ -133,7 +133,8 @@ class Publish
 
         $data['tv'] = Tv::findOrFail($tv_id);
         $data['base_url'] = url('/' . $path); //to specify the baseurl of the tv
-        $data['app_url'] = url('/'); //to get the app url
+        $data['app_url'] = url(Path::$tvPath); //to get the app url
+	$data['api_url'] = url(Path::$apiPath); //to get the api url
         $data['tab'] = Tab::first();
         $data['custom_news'] = News::where('tv_id', $tv_id)->orderBy('position', 'asc')->get();
         $data['rss_news'] = Rss::where('tv_id', $tv_id)->orderBy('position', 'asc')->get();
@@ -392,5 +393,11 @@ class Publish
 
         //clear session
         session()->forget('files');
+
+        try {
+            //code...
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 }

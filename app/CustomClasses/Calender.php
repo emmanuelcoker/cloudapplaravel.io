@@ -452,7 +452,7 @@ class Calender
         //     }
         // }
 
-        $outputPath = 'calender/events.json';
+        $outputPath = Path::serverFullAsset('calender/events.json');
         file_put_contents($outputPath, json_encode($event));
     }
 }

@@ -6,7 +6,7 @@ use App\CustomClasses\Activity;
 use App\CustomClasses\Permission;
 use App\CustomClasses\Publish;
 use App\CustomClasses\StoreRateToArray;
-use App\Models\Country;
+use App\Models\Flag;
 use App\Models\Rate;
 use App\Models\Tab;
 use Livewire\Component;
@@ -39,7 +39,7 @@ class FxRate extends Component
         return view('livewire.fx-rate', [
             'rates' => Rate::all(),
             'tabs' => Tab::first(),
-            'countries' => Country::all(),
+            'flags' => Flag::all(),
         ]);
     }
 

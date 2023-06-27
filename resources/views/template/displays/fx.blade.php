@@ -15,6 +15,7 @@
     <meta http-equiv="Pragma" content="no-cache">
 
     <meta http-equiv="Expires" content="0">
+    <meta http-equiv="pageid" content="<? echo rand(); ?>">
 
     <meta name="description" content="">
 
@@ -231,7 +232,7 @@ list-style-type: none;
 </head>
 
 
-<body id="myHeader">
+<body id="myHeader" changePageID="<? echo rand(); ?>">
 
     <input type="hidden" name="cur_update_key" value="<?php echo rand(99999999999999, 300000000000000) . 'update' . rand(99999999999999, 700000000000000) ?>">
     <div id="loaderBody">
@@ -734,6 +735,7 @@ Sorry your browser does not support inline frames.
         <a href="{{$app_url}}{{Variables::tvPath('flag/ZMW.png')}}"></a>
 
 
+        <a href="{{$app_url}}{{Variables::tvPath('index.html')}}?nocache=<?php echo rand(100, 998000); ?>"></a>
         <a href="{{$app_url}}{{Variables::tvPath('announce.html')}}"></a>
         <a href="{{$app_url}}{{Variables::tvPath('morning.html')}}"></a>
         <a href="{{$app_url}}{{Variables::tvPath('afternoon.html')}}"></a>
@@ -752,9 +754,18 @@ Sorry your browser does not support inline frames.
 
         <a href="{{$app_url}}{{Variables::tvPath('templates/templatestyle.xlsx')}}"></a>
 
-        <a href="{{$app_url}}{{Variables::tvPath('clock/1/index.html')}}"></a>
-        <a href="{{$app_url}}{{Variables::tvPath('clock/2/index.html')}}"></a>
-        <a href="{{$app_url}}{{Variables::tvPath('clock/3/index.html')}}"></a>
+        @if($tv->clockLayout != 1)
+            <a href="{{$app_url}}{{Variables::tvPath('clock/1/index.html')}}"></a>
+        @endif
+        @if($tv->clockLayout != 2)
+            <a href="{{$app_url}}{{Variables::tvPath('clock/2/index.html')}}"></a>
+        @endif
+        @if($tv->clockLayout != 3)
+            <a href="{{$app_url}}{{Variables::tvPath('clock/3/index.html')}}"></a>
+        @endif
+        @if($tv->clockLayout != 4)
+            <a href="{{$app_url}}{{Variables::tvPath('clock/4/index.html')}}"></a>
+        @endif
 
         <a href="{{$app_url}}{{Variables::tvPath('webview2/index.html')}}"></a>
 
@@ -891,7 +902,6 @@ Sorry your browser does not support inline frames.
                 //create function to display the time
                 <?php
                 if ($settings->time_type == 1) {
-
                     echo 'function getTime(){
                         //create variable currentTime and have the Date() object store computers time
                             var currentTime = new Date();
@@ -973,7 +983,7 @@ Sorry your browser does not support inline frames.
                     echo 'function getTime(){
                                     var meridiems = " AM";
                                     $.ajax({
-                                    url: "' . $app_url . '/api/get_server_time",
+                                    url: "' . $api_url . '/api/get_server_time",
                                     data: {
 
                                     },
@@ -1289,7 +1299,7 @@ Sorry your browser does not support inline frames.
                 //compare with saved data when a new data is fetched
                 //save to local  and update dom only when  new data is available
                 var saved_fx_name = 'fetched_fx_data';
-                var update_url = "<?php echo  $app_url . '/api/get-rate-update' ?>";
+                var update_url = "{{$api_url}}/api/get-rate-update";
 
                 $.ajax({
                     url: update_url,
@@ -1689,7 +1699,7 @@ Sorry your browser does not support inline frames.
                 var second = date.getSeconds();
                 if (month == '{{$mediaStartMonth - 1}}' && day == '{{$mediaStartDay}}' && hours == '{{$mediaStartHour}}' && minutes == '{{$mediaStartMin}}' && second == 1) {
                     console.log('run add schedule');
-                    var update_url = '{{$app_url}}/api/run-schedule';
+                    var update_url = '{{$api_url}}/api/run-schedule';
                     $.ajax({
                         url: update_url,
                         data: {
@@ -1721,7 +1731,7 @@ Sorry your browser does not support inline frames.
                 var second = date.getSeconds();
                 if (month == '{{$mediaEndMonth - 1}}' && day == '{{$mediaEndDay}}' && hours == '{{$mediaEndHour}}' && minutes == '{{$mediaEndMin}}' && second == 1) {
                     console.log('run remove schedule');
-                    var update_url = '{{$app_url}}/api/run-schedule';
+                    var update_url = '{{$api_url}}/api/run-schedule';
                     $.ajax({
                         url: update_url,
                         data: {

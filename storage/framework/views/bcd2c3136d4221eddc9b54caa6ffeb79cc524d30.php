@@ -79,15 +79,15 @@
             <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('dashboard-form')->html();
-} elseif ($_instance->childHasBeenRendered('MKGicUM')) {
-    $componentId = $_instance->getRenderedChildComponentId('MKGicUM');
-    $componentTag = $_instance->getRenderedChildComponentTagName('MKGicUM');
+} elseif ($_instance->childHasBeenRendered('oUkF3TO')) {
+    $componentId = $_instance->getRenderedChildComponentId('oUkF3TO');
+    $componentTag = $_instance->getRenderedChildComponentTagName('oUkF3TO');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('MKGicUM');
+    $_instance->preserveRenderedChild('oUkF3TO');
 } else {
     $response = \Livewire\Livewire::mount('dashboard-form');
     $html = $response->html();
-    $_instance->logRenderedChild('MKGicUM', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('oUkF3TO', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -310,7 +310,7 @@ echo $html;
 
                     <div class="media">
                         <div class="w-img">
-                            <img src="<?php echo e(Path::asset('images/'.$support->image)); ?>" alt="avatar">
+                            <img src="<?php echo e(Path::asset('images/'.$support['image'])); ?>" alt="avatar">
                         </div>
                         <div class="media-body">
                             <h6 style="color:var(--blackText)"><?php echo e($support->name); ?></h6>

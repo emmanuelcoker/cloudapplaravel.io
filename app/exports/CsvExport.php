@@ -16,7 +16,7 @@ class CsvExport implements FromView
     public function view(): View
     {
         $data['files'] = $this->data;
-        return view('csv', $data );
+        return view('csv', $data);
     }
 
 }

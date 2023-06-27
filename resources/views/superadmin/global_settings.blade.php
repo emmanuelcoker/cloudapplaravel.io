@@ -71,8 +71,8 @@
                             <p class="" style="color:var(--tableTitleColor2)">Super admin managing Control panel!</p>
                         </div>
 </div>
-                           
-                        </div> 
+
+                        </div>
 
                         <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
                          <button class="btn btn-success" type="submit" style="display: block; margin:30px 30px 30px 0px;float:right; ">
@@ -92,7 +92,7 @@
                                                         <p class="mt-2"><i class="flaticon-cloud-upload mr-1"></i> Upload Logo</p>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="col-xl-10 col-lg-12 col-md-8 mt-md-0 mt-4">
                                                     <div class="form">
                                                         <div class="row">
@@ -191,7 +191,7 @@
                             <div id="general-info" class="section general-info">
                                 <div class="info">
                                     <h6 class="" style="color:var(--blackText)">Publish Settings</h6>
-                                    <div class="row">   
+                                    <div class="row">
                                         <div class="col-lg-11 mx-auto">
                                             <div class="row">
                                                 <div class="col-xl-12 col-lg-12 col-md-8 mt-md-0 mt-4">
@@ -214,8 +214,8 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div> 
-                                                            
+                                                            </div>
+
                                                             <div class="col-sm-6">
                                                             <div class="row">
                                                                     <div class="col-md-12">
@@ -233,7 +233,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div> 
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -467,7 +467,7 @@
                                                                             </label>
                                                                         </div>
                                                                     </div>
-                                                                    
+
                                                                     <div class="col-md-6">
                                                                     <label style=" display:block; text-align: center; margin:auto; color:var(--blackText)">Freeze Time</label>
                                                                         <Br>
@@ -484,7 +484,7 @@
 
                                                             </div>
 
-                                                           
+
                                                             <div class="col-sm-4">
                                                                 <hr style="border-top: 1px solid var(--tableDivBorder)"><Br>
                                                                 <div class="row">
@@ -521,7 +521,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                           
+
                                                             <div class="col-sm-4">
                                                                 <hr style="border-top: 1px solid var(--tableDivBorder)"><Br>
                                                                 <div class="row">
@@ -540,7 +540,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            
+
 
                                                         </div>
                                                     </div>
@@ -650,7 +650,7 @@
 
 
                         <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
-                        
+
                             <div id="general-info" class="section general-info">
                                 <div class="info">
                                     <h6 class="" style="color:var(--blackText)">Section Visibility Control</h6>
@@ -767,7 +767,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            
+
                                                             <div class="col-sm-4">
                                                                 <hr style="border-top: 1px solid var(--tableDivBorder)"><Br>
                                                                 <div class="row">
@@ -941,7 +941,9 @@
 
 
     function getPreTime(data) {
+        console.log(data);
         var value = data.value;
+        console.log("value: ", value);
         if (value == 1) {
             $('#ST').hide();
             $('#CT').hide();
@@ -2315,7 +2317,7 @@
 
         if (timeZone == 0) {
             $.ajax({
-                url: "/api/get_server_time",
+                url: "{{ env('APP_URL') }}/api/get_server_time",
                 data: {},
                 success: function(data) {
                     if (data != "") {
@@ -2416,11 +2418,12 @@
             })
         } else {
             $.ajax({
-                url: "/api/get_raw_server_time",
+                url: "{{ env('APP_URL') }}/api/get_raw_server_time",
                 data: {},
                 success: function(data) {
                     if (data != "") {
                         let res = JSON.parse(data)
+
                         console.log(res.hours)
                         var hours = res.hours + parseInt(timeZone);
                         var minutes = res.minutes;
@@ -2523,7 +2526,7 @@
 
     function getRawTime() {
         $.ajax({
-            url: "/api/get_raw_server_time",
+            url: "{{ env('APP_URL') }}/api/get_raw_server_time",
             data: {},
             success: function(data) {
                 if (data != "") {

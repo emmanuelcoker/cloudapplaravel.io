@@ -11,10 +11,13 @@ namespace App\CustomClasses;
 
 
 class Path{
+    
+    private static $asset = '/';
+    public static $tvPath = '/';
+    public static $apiPath = '/';
+    private static $livewireAsset = '/';
 
-    //sending sms
     public static function asset($path){
-        
         $url_extract = substr($path, 0, 1);
         if($url_extract === '/'){
             $url = ltrim($path, '/');
@@ -22,7 +25,29 @@ class Path{
             $url = $path;
         }
 
-       return '/'.$url;
+       return self::$asset.$url;
+    }
+
+    public static function livewireAsset($path = null){
+        $url_extract = substr($path, 0, 1);
+        if($url_extract === '/'){
+            $url = ltrim($path, '/');
+        }else{
+            $url = $path;
+        }
+
+       return self::$livewireAsset.$url;
+    }
+    
+     public static function serverFullAsset($path){
+        $url_extract = substr($path, 0, 1);
+        if($url_extract === '/'){
+            $url = ltrim($path, '/');
+        }else{
+            $url = $path;
+        }
+
+       return env('SERVER_ASSET').self::$asset.$url;
     }
    
 }   

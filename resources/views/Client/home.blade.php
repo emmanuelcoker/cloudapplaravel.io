@@ -300,7 +300,7 @@
 
                     <div class="media">
                         <div class="w-img">
-                            <img src="{{Path::asset('images/'.$support->image)}}" alt="avatar">
+                            <img src="{{Path::asset('images/'.$support['image'])}}" alt="avatar">
                         </div>
                         <div class="media-body">
                             <h6 style="color:var(--blackText)">{{$support->name}}</h6>

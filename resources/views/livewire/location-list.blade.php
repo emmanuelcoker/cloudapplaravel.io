@@ -26,7 +26,7 @@
     </div>
 
     @foreach($locations as $location )
-    <div class="items">
+    <div class="items"> 
         <div class="item-content" style="min-width: 100%;  ">
             <div class="user-profile" style="width: 25%; text-align: center;">
                 <div class="n-chk align-self-center text-center">
